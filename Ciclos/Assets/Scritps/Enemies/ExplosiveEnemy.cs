@@ -33,7 +33,7 @@ public class ExplosiveEnemy : EnemyPatrol
             hitted.GetComponent<Player>().TakeDamage();
         }
 
-        Destroy(gameObject);
+        Die();
 
         yield return 0;
     }

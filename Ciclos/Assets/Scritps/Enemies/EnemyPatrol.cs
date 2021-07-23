@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(Collision))]
 public abstract class EnemyPatrol : MonoBehaviour
 {
     [Header("References")]
