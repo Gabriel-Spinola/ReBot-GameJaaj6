@@ -115,5 +115,12 @@ public class Player : MonoBehaviour
         canMove = true;
     }
 
+    private void Die()
+    {
+        Debug.Log("DIED");
+    }
+
+    public void TakeDamage() => Die();
+
     public void SetUseBetterJump(bool val) => useBetterJump = val;
 }

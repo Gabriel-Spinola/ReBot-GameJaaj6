@@ -1147,7 +1147,6 @@ GameObject:
   - component: {fileID: 949545633}
   - component: {fileID: 949545631}
   - component: {fileID: 949545629}
-  - component: {fileID: 949545628}
   - component: {fileID: 949545630}
   m_Layer: 0
   m_Name: Enemy (1)
@@ -1171,23 +1170,6 @@ Transform:
   m_Father: {fileID: 1089759527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &949545628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949545626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c4468af091176d4cb6c273dba9d6f18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundCheck: {fileID: 865284138}
-  whatIsBlock:
-    serializedVersion: 2
-    m_Bits: 256
-  walkSpeed: 10
 --- !u!114 &949545629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,10 +1182,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22500e44abb70234393480d37e4c6bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 865284138}
+  whatIsBlock:
+    serializedVersion: 2
+    m_Bits: 256
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
   health: 1
+  walkSpeed: 10
+  waitToExplode: 1.5
+  attackRange: 2.56
   explosionRadius: 3.55
-  patrolPosA: {x: 0, y: 0}
-  patrolPosB: {x: 0, y: 0}
 --- !u!114 &949545630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,7 +1231,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
