@@ -27,9 +27,6 @@ public class FallingPlatform : MonoBehaviour
 
         rb.isKinematic = false;
         GetComponent<Collider2D>().isTrigger = true;
-
-        Debug.Log("Falling");
-
         falled = true;
 
         StartCoroutine(Respawn(respawnTime));
@@ -44,8 +41,6 @@ public class FallingPlatform : MonoBehaviour
         transform.position = initialPos;
         falled = false;
 
-        Debug.Log("Respawned");
-
         GetComponent<Collider2D>().isTrigger = false;
     }
 
@@ -53,8 +48,6 @@ public class FallingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !falled) {
             StartCoroutine(Fall(waitToFall));
-
-            Debug.Log("Enter Collision");
         }
     }
 }
