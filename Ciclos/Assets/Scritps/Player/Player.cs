@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
 
     /// <summary>
     /// if falling, add fallMultiplier
-    /// if jumping and not holding spacebar, increase gravity to peform a small jump
+    /// if jumping and not holding spacebar or walljumping, increase gravity to peform a small jump
     /// if jumping and holding spacebar, perform a full jump
     /// </summary>
     private void BetterJump()
