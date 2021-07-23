@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Carlos : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Carlos References")]
+    [SerializeField] private GameObject bullet;
+
+    [Header("Carlos Stats")]
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private float damage = 1f;
+    [SerializeField] private float bulletSpeed = 2f;
+
+    private float nextTimeToFire = 0f;
+
+    private void Update()
     {
-        
+        if (Time.time >= nextTimeToFire) {
+            nextTimeToFire = Time.time + 1f / fireRate;
+
+            Shoot();   
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Shoot()
     {
-        
+        CommonBullet currentBullet = Instantiate(bullet, transform.position, transform.rotation).GetComponent<CommonBullet>();
+
+        currentBullet.damage = damage;
+        currentBullet.speed = bulletSpeed;
     }
 }

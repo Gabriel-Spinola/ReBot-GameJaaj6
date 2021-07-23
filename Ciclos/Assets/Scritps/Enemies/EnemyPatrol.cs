@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Collision))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collision))]
 public abstract class EnemyPatrol : Enemy
 {
     [Header("Patrol References")]
@@ -13,15 +11,15 @@ public abstract class EnemyPatrol : Enemy
     [Header("Patrol Stats")]
     [SerializeField] protected float walkSpeed = 10f;
 
+    protected Rigidbody2D rb = null;
     protected Collision col = null;
 
     protected bool mustPatrol = true;
     protected bool mustTurn = false;
 
-    protected override void Awake()
+    protected virtual void Awake()
     {
-        base.Awake();
-
+        rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collision>();
     }
 

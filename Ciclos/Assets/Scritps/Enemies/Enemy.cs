@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
-using Pathfinding;
-using System;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : MonoBehaviour
 {
     [Header("References")]
@@ -12,17 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Stats")]
     [SerializeField] protected float health = 1f; 
 
-    protected Rigidbody2D rb = null;
-
-    protected virtual void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    public virtual void JumpedOn()
-    {
-        Destroy(rb);
-    }
+    public virtual void JumpedOn() { }
 
     protected virtual void Die()
     {
