@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
@@ -14,21 +13,19 @@ public abstract class Bullet : MonoBehaviour
     [HideInInspector] public float damage;
     [HideInInspector] public float speed;
 
-    private void Update()
+    protected virtual void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * speed);
-
         StartCoroutine(DestroyBulletOnTimer(lifeTime));
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (Physics2D.OverlapBox((Vector2) transform.position + colOffset, colSize, 0f, whatIsBlocks)) {
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {
             other.gameObject.GetComponent<Player>().TakeDamage();
