@@ -25,11 +25,7 @@ public class Carlos : Enemy
 
     private void Shoot()
     {
-        CommonBullet currentBullet = Instantiate(
-            original: bullet,
-            position: transform.position,
-            rotation: transform.rotation
-        ).GetComponent<CommonBullet>();
+        CommonBullet currentBullet = Instantiate(bullet, transform.position, transform.rotation).GetComponent<CommonBullet>();
 
         currentBullet.damage = damage;
         currentBullet.speed = bulletSpeed;
