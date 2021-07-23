@@ -43,7 +43,7 @@ public class Collision : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2) transform.position + rightColOffset, horizontalColRadius);
         Gizmos.DrawWireSphere((Vector2) transform.position + leftColOffset, horizontalColRadius);
 
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireCube((Vector2) transform.position + bottomColOffset, bottomColSize);
     }
 }

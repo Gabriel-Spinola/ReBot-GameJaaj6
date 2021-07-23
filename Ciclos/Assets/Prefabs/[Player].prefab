@@ -191,10 +191,10 @@ MonoBehaviour:
   InputManager: {fileID: 0}
   moveSpeed: 10
   friction: 0.2
-  jumpForce: 12
+  jumpForce: 11
   fallMultiplier: 3
   lowJumpMultiplier: 5
-  wallJumpForce: 12
+  wallJumpForce: 14.5
 --- !u!114 &5915052774455979100
 MonoBehaviour:
   m_ObjectHideFlags: 0

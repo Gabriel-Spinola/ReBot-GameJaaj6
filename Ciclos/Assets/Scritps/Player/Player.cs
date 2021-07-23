@@ -40,11 +40,12 @@ public class Player : MonoBehaviour
 
         if (col.isGrounded) {
             wallJumped = false;
+            useBetterJump = true;
         }
 
         if (InputManager.keyJump) {
             if (col.isGrounded) {
-                Jump();
+                Jump(jumpForce);
             }
             else if (col.isOnWall) {
                 WallJump();
@@ -70,12 +71,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Jump()
+    public void Jump(float jumpForce)
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
-    private void Jump(Vector2 jumpDir)
+    public void Jump(Vector2 jumpDir)
     {
         rb.velocity = jumpDir;
     }
@@ -113,4 +114,6 @@ public class Player : MonoBehaviour
 
         canMove = true;
     }
+
+    public void SetUseBetterJump(bool val) => useBetterJump = val;
 }

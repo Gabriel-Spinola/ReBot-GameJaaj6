@@ -20,8 +20,8 @@ public class InputManager : MonoBehaviour
     {
         xAxis = Input.GetAxisRaw("Horizontal");
 
-        keyJump = Input.GetKeyDown(KeyCode.Space);
-        keyJumpHold = Input.GetKey(KeyCode.Space);
+        keyJump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        keyJumpHold = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
 
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.RightAlt)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
