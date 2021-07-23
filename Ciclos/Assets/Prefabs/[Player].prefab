@@ -194,6 +194,7 @@ MonoBehaviour:
   jumpForce: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  wallJumpForce: 10
 --- !u!114 &5915052774455979100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,12 +209,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsBlocks:
     serializedVersion: 2
-    m_Bits: 0
-  rightColOffset: {x: 0, y: 0}
-  leftColOffset: {x: 0, y: 0}
+    m_Bits: 256
+  rightColOffset: {x: 0.1, y: 0}
+  leftColOffset: {x: -0.1, y: 0}
   horizontalColRadius: 0.5
-  bottomColSize: {x: 0, y: 0}
-  bottomColOffset: {x: 0, y: 0}
+  bottomColSize: {x: 0.98, y: 0.05}
+  bottomColOffset: {x: 0, y: -0.477}
   isOnRightWall: 0
   isOnLeftWall: 0
   isOnWall: 0
