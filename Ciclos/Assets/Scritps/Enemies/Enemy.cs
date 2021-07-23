@@ -6,9 +6,13 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float health = 1f;
+    [Header("References")]
+    [SerializeField] protected LayerMask whatIsPlayer;
 
-    protected Rigidbody2D rb = null ;
+    [Header("Stats")]
+    [SerializeField] protected float health = 1f; 
+
+    protected Rigidbody2D rb = null;
 
     protected virtual void Awake()
     {

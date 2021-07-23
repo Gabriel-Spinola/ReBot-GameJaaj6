@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collision))]
-public abstract class EnemyPatrol : MonoBehaviour
+[RequireComponent(typeof(Collision))]
+public abstract class EnemyPatrol : Enemy
 {
-    [Header("References")]
+    [Header("Patrol References")]
     [SerializeField] protected Transform groundCheck;
 
     [SerializeField] protected LayerMask whatIsBlock;
-    [SerializeField] protected LayerMask whatIsPlayer;
 
-    [Header("Stats")]
-    [SerializeField] protected float health = 1f;
+    [Header("Patrol Stats")]
     [SerializeField] protected float walkSpeed = 10f;
 
-    protected Rigidbody2D rb = null;
     protected Collision col = null;
 
     protected bool mustPatrol = true;
     protected bool mustTurn = false;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
+
         col = GetComponent<Collision>();
     }
 
@@ -58,16 +56,4 @@ public abstract class EnemyPatrol : MonoBehaviour
 
         mustPatrol = true;
     }
-
-    public virtual void JumpedOn()
-    {
-        Destroy(rb);
-    }
-
-    protected virtual void Die()
-    {
-        Destroy(gameObject);
-    }
-
-    public void TakeDamage(float damage) => health -= damage;
 }
