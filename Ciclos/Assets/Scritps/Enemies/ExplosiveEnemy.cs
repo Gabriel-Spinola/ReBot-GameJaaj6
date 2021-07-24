@@ -6,9 +6,9 @@ public class ExplosiveEnemy : EnemyPatrol
 {
     [Header("Explosive Enemy Stats")]
     [SerializeField] private float waitToExplode = 1.5f;
-    [Range(0.1f, 5f)]
+    [Range(1f, 5f)]
     [SerializeField] private float attackRange = 1f;
-    [Range(0.1f, 5f)]
+    [Range(1f, 5f)]
     [SerializeField] private float explosionRadius = 1.2f;
 
     protected override void FixedUpdate()

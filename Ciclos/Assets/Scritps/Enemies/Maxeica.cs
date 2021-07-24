@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Maxeica : EnemyPatrol
 {
+    [Header("Maxeica References")]
     [SerializeField] private float jumpHeight = 8f;
     [SerializeField] private float disableFlipTimer = .5f;
 
