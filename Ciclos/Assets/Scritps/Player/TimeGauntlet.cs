@@ -16,10 +16,14 @@ public class TimeGauntlet : MonoBehaviour
         if (isOnPast && inputManager.keyGauntlet) {
             present.SetActive(true);
             past.SetActive(false);
+
+            isOnPast = false;
         }
         else if (inputManager.keyGauntlet) {
             present.SetActive(false);
             past.SetActive(true);
+
+            isOnPast = true;
         }
     }
 }
