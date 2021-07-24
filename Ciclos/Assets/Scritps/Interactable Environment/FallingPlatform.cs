@@ -3,22 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class FallingPlatform : MonoBehaviour
 {
+    private enum Time {
+        Present,
+        Past
+    }
+
+    [SerializeField] private Time time;
+
     [SerializeField] private float waitToFall = 1f;
     [SerializeField] private float respawnTime = 2f;
 
     private Rigidbody2D rb = null;
+    private Collider2D collider = null;
+    private SpriteRenderer spriteRenderer = null;
 
     private Vector2 initialPos = Vector2.zero;
 
     private bool falled = false;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
-        initialPos = transform.position;
+        initialPos = transform.position;    
+    }
 
-        rb = GetComponent<Rigidbody2D>();
+    private void Update()
+    {
+        switch (time) {
+            case Time.Present:
+                if (TimeGauntlet.isOnPast) {
+                    collider.enabled = false;
+                    spriteRenderer.enabled = false;
+                }
+                else {
+                    collider.enabled = true;
+                    spriteRenderer.enabled = true;
+                }
+            break;
+
+            case Time.Past:
+                if (TimeGauntlet.isOnPast) {
+                    collider.enabled = true;
+                    spriteRenderer.enabled = true;
+                }
+                else {
+                    collider.enabled = false;
+                    spriteRenderer.enabled = false;
+                }
+            break;
+        }
     }
 
     private IEnumerator Fall(float time)
