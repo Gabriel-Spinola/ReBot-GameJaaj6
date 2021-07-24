@@ -35,18 +35,23 @@ public class RedHog : EnemyPatrol
         currentShootAngle = initialAngle;
     }
 
-    private new void Update()
+    protected override void Update()
     {
         if (!isAttacking)
             base.Update();
-
-        isAttacking = Physics2D.OverlapCircle(transform.position, attackRange, whatIsPlayer);
 
         if (isAttacking) {
             rb.velocity = Vector2.right * Mathf.Lerp(rb.velocity.x, 0f, friction) + Vector2.up * rb.velocity.y;
 
             StartCoroutine(Attack(waitToAttack));
         }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        isAttacking = Physics2D.OverlapCircle(transform.position, attackRange, whatIsPlayer);
     }
 
     private IEnumerator Attack(float time)
