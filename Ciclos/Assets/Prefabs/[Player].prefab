@@ -189,6 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputManager: {fileID: 0}
+  whatIsSpikes:
+    serializedVersion: 2
+    m_Bits: 1024
   moveSpeed: 10
   friction: 0.2
   jumpForce: 11

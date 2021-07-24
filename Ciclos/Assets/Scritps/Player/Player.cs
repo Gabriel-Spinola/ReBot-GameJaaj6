@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     private bool canMove = true;
     private bool wallJumped = false;
     private bool useBetterJump = true;
+    private bool isInterpolationDisabled = false;
+    private bool canChangeInterpolation = false;
 
     private void Awake()
     {
@@ -40,6 +42,11 @@ public class Player : MonoBehaviour
         Movement();
 
         if (col.isGrounded) {
+            if (isInterpolationDisabled && canChangeInterpolation) {
+                rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+                rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            }
+
             wallJumped = false;
             useBetterJump = true;
         }
@@ -129,6 +136,25 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == whatIsSpikes) {
             TakeDamage();
+        }
+
+        if (collision.gameObject.CompareTag("Platform")) {
+            transform.parent = collision.gameObject.transform;
+
+            rb.interpolation = RigidbodyInterpolation2D.None;
+            rb.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+
+            isInterpolationDisabled = true;
+            canChangeInterpolation = false;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform")) {
+            transform.parent = null;
+
+            canChangeInterpolation = true;
         }
     }
 }
