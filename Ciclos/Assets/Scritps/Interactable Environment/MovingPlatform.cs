@@ -34,6 +34,7 @@ public class MovingPlatform : MonoBehaviour
             nextPos = pos1.position;
         }
 
+        rb.
         transform.position = Vector2.MoveTowards(transform.position, nextPos, speed * Time.fixedDeltaTime);
     }
 
