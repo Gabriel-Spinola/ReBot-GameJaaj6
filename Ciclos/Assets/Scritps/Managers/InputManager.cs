@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     public bool keyJump;
     public bool keyJumpHold;
 
+    public bool keyGauntlet;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -22,6 +24,8 @@ public class InputManager : MonoBehaviour
 
         keyJump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         keyJumpHold = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+
+        keyGauntlet = Input.GetKeyDown(KeyCode.F);
 
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.RightAlt)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
