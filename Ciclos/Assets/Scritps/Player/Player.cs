@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private InputManager InputManager = null;
+    [SerializeField] private LayerMask whatIsSpikes = 0;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
@@ -123,4 +124,11 @@ public class Player : MonoBehaviour
     public void TakeDamage() => Die();
 
     public void SetUseBetterJump(bool val) => useBetterJump = val;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == whatIsSpikes) {
+            TakeDamage();
+        }
+    }
 }
