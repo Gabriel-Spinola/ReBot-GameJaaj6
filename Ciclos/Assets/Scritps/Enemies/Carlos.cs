@@ -29,6 +29,7 @@ public class Carlos : Enemy
 
         currentBullet.damage = damage;
         currentBullet.speed = bulletSpeed;
-        currentBullet.dir = (int) transform.localScale.x;
+        currentBullet.dir = new Vector2((int) transform.localScale.x, 0f);
+        currentBullet.xScale = (int) transform.localScale.x;
     }
 }

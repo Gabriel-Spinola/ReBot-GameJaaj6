@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CommonBullet : Bullet
 {
-    [HideInInspector] public int dir;
-    
+    [HideInInspector] public Vector2 dir;
+    [HideInInspector] public float xScale;
+
     protected override void Update()
     {
         base.Update();
 
-        transform.Translate(Vector3.right * dir * speed * Time.deltaTime);
-        transform.localScale = new Vector3(dir, transform.localScale.y, transform.localScale.z);
+        transform.Translate(dir * speed * Time.deltaTime);
+
+        transform.localScale = new Vector3(xScale, transform.localScale.y, transform.localScale.z);
     }
 }
