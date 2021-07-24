@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Maxeica : EnemyPatrol
 {
-    [SerializeField] private float jumpHeight = 0f;
+    [SerializeField] private float jumpHeight = 8f;
     [SerializeField] private float disableFlipTimer = .5f;
 
     private Vector2 groundCheckerInitialPos = Vector2.zero;
@@ -31,10 +31,10 @@ public class Maxeica : EnemyPatrol
             StartCoroutine(DisableFlip(disableFlipTimer));
         }
 
-        rb.velocity = Vector2.right * walkSpeed + Vector2.up * rb.velocity.y;
+        rb.velocity = Vector2.right * walkSpeed * Time.fixedDeltaTime + Vector2.up * rb.velocity.y;
 
         if (col.isGrounded) {
-            rb.velocity = Vector2.right * rb.velocity.x + Vector2.up * jumpHeight;
+            rb.velocity = Vector2.right * rb.velocity.x + Vector2.up * jumpHeight * Time.fixedDeltaTime;
         }
     }
 

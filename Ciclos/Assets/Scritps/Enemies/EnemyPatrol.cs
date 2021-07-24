@@ -42,7 +42,7 @@ public abstract class EnemyPatrol : Enemy
         if (mustTurn || col.isOnWall)
             Flip();
 
-        rb.velocity = new Vector2(walkSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
     }
 
     protected virtual void Flip()
