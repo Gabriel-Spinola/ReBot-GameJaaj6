@@ -47,6 +47,13 @@ public class Maxeica : EnemyPatrol
         canFlip = true;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) {
+            collision.gameObject.GetComponent<Player>().TakeDamage();
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(new Vector2(groundCheck.position.x, groundCheckerInitialPos.y), .1f);
