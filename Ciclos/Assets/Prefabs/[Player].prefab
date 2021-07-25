@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 944311547680526597}
   - component: {fileID: 5897396547938866655}
   - component: {fileID: 4694011908068206899}
+  - component: {fileID: 491205333}
   m_Layer: 9
   m_Name: PlayerGraphics
   m_TagString: Untagged
@@ -71,12 +72,12 @@ SpriteRenderer:
   m_SortingLayerID: 1036490751
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ea02179bc83616a44bdab898ddd9b21e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d8fa606c5efc67743ba58ebdc43772d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94,6 +95,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb538d2f95a3d040b1df49004076009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &491205333
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434056824141808293}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b248d5b3ca552c5498a0c99fd1e6e318, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4694011908225834811
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +162,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.27}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -153,7 +173,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.81, y: 0.72}
   m_EdgeRadius: 0
 --- !u!50 &4582752689782278710
 Rigidbody2D:
@@ -188,16 +208,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788dde9e00f66454f92862c49964f62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InputManager: {fileID: 0}
   whatIsSpikes:
     serializedVersion: 2
     m_Bits: 1024
+  InputManager: {fileID: 0}
   moveSpeed: 10
   friction: 0.2
   jumpForce: 11
   fallMultiplier: 3
   lowJumpMultiplier: 5
   wallJumpForce: 14.5
+  slideSpeed: 1
+  slideDelay: 0.3
+  canMove: 1
+  wallSlide: 0
 --- !u!114 &5915052774455979100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,12 +237,13 @@ MonoBehaviour:
   whatIsBlocks:
     serializedVersion: 2
     m_Bits: 256
-  rightColOffset: {x: 0.1, y: 0}
-  leftColOffset: {x: -0.1, y: 0}
-  horizontalColRadius: 0.5
-  bottomColSize: {x: 0.98, y: 0.05}
-  bottomColOffset: {x: 0, y: -0.477}
+  rightColOffset: {x: 0.1, y: -0.23}
+  leftColOffset: {x: -0.1, y: -0.23}
+  horizontalColRadius: 0.378
+  bottomColSize: {x: 0.68, y: 0.05}
+  bottomColOffset: {x: 0, y: -0.63}
   isOnRightWall: 0
   isOnLeftWall: 0
   isOnWall: 0
+  wallSide: 0
   isGrounded: 0

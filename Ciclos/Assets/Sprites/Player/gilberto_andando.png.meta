@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: 7cdb29a8a2c4c2646a5b8f4307a27437
+guid: c73c5ec20dad3b34b86ef816f54f9e66
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5381704542714033442
-    second: vraw_nia_0
+      213: -6104331486087533166
+    second: oi_0
   - first:
-      213: -7667777616752947926
-    second: vraw_nia_1
+      213: -8367217240209375161
+    second: oi_1
   - first:
-      213: 2492768632044171201
-    second: vraw_nia_2
+      213: -12733183327812122
+    second: oi_2
   - first:
-      213: 5087482763353037204
-    second: vraw_nia_3
+      213: 3310524483118391210
+    second: oi_3
+  - first:
+      213: -4486439371081944251
+    second: oi_4
+  - first:
+      213: 653155172384433869
+    second: oi_5
+  - first:
+      213: -8634701869778469965
+    second: oi_6
+  - first:
+      213: 7112388471529538009
+    second: oi_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vraw_nia_0
+      name: oi_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eda8c6d5b385055b0800000000000000
-      internalID: -5381704542714033442
+      spriteID: 29d25840bde094ba0800000000000000
+      internalID: -6104331486087533166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vraw_nia_1
+      name: oi_1
       rect:
         serializedVersion: 2
         x: 32
@@ -146,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2dcfb812e4969590800000000000000
-      internalID: -7667777616752947926
+      spriteID: 740cbce504ca1eb80800000000000000
+      internalID: -8367217240209375161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vraw_nia_2
+      name: oi_2
       rect:
         serializedVersion: 2
         x: 64
@@ -167,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cfaa341dd7189220800000000000000
-      internalID: 2492768632044171201
+      spriteID: 6e5c2eabc33c2dff0800000000000000
+      internalID: -12733183327812122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vraw_nia_3
+      name: oi_3
       rect:
         serializedVersion: 2
         x: 96
@@ -188,8 +200,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 499949e5e9e5a9640800000000000000
-      internalID: 5087482763353037204
+      spriteID: aaf518c3a7851fd20800000000000000
+      internalID: 3310524483118391210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oi_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54375548927fcb1c0800000000000000
+      internalID: -4486439371081944251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oi_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc6ee213b29701900800000000000000
+      internalID: 653155172384433869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oi_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbf376e5606b2880800000000000000
+      internalID: -8634701869778469965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oi_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d10a1eb1a744b260800000000000000
+      internalID: 7112388471529538009
       vertices: []
       indices: 
       edges: []
