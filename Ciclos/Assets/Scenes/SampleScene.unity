@@ -2724,7 +2724,32 @@ PrefabInstance:
     - target: {fileID: 1244711104932961630, guid: b04c60885d45ee64da13c02d867ab9f6,
         type: 3}
       propertyPath: m_MaxForce
-      value: 8000
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244711104932961630, guid: b04c60885d45ee64da13c02d867ab9f6,
+        type: 3}
+      propertyPath: m_DampingRatio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244711104932961630, guid: b04c60885d45ee64da13c02d867ab9f6,
+        type: 3}
+      propertyPath: m_Frequency
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244711104932961630, guid: b04c60885d45ee64da13c02d867ab9f6,
+        type: 3}
+      propertyPath: m_AutoConfigureTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244711104932961630, guid: b04c60885d45ee64da13c02d867ab9f6,
+        type: 3}
+      propertyPath: m_Target.y
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244711104932961630, guid: b04c60885d45ee64da13c02d867ab9f6,
+        type: 3}
+      propertyPath: m_Anchor.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6452378021989465954, guid: b04c60885d45ee64da13c02d867ab9f6,
         type: 3}
