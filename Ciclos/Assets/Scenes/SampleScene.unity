@@ -2422,31 +2422,6 @@ PrefabInstance:
       propertyPath: InputManager
       value: 
       objectReference: {fileID: 4718379271826043680}
-    - target: {fileID: 3364598367765037981, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: moveWithTransform
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3364598367765037981, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 3364598367765037981, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3364598367765037981, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521107252283651824, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4694011908225834810, guid: a3c032e040fe2c143983ed93c1f770d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2506,56 +2481,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: '[Player]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6151682981143797383, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: ForceModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: VelocityModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: VelocityModule.x.scalar
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: VelocityModule.y.scalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: VelocityModule.inWorldSpace
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637450526731239347, guid: a3c032e040fe2c143983ed93c1f770d0,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3c032e040fe2c143983ed93c1f770d0, type: 3}

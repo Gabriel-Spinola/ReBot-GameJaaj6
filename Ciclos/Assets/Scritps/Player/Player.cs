@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private PlayerGraphics playerGraphics = null;
 
     private bool wallJumped = false;
+    private bool avoidDoubleJump = false;
     private bool useBetterJump = true;
     private bool isInterpolationDisabled = false;
     private bool canChangeInterpolation = false;
@@ -69,9 +70,11 @@ public class Player : MonoBehaviour
 
         canJump--;
 
-        if (col.isGrounded) {
+        if (col.isGroundedEarly) {
             canJump = 20;
+        }
 
+        if (col.isGrounded) {
             wallJumped = false;
             useBetterJump = true;
         }
@@ -140,6 +143,9 @@ public class Player : MonoBehaviour
 
     public void Jump(float jumpForce)
     {
+        if (avoidDoubleJump)
+            return;
+
         slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
         ParticleSystem particle = jumpParticle;
 
@@ -149,6 +155,8 @@ public class Player : MonoBehaviour
 
         particle.Play();
         canJump = 0;
+
+        StartCoroutine(DisableJump(.2f));
     }
 
     public void Jump(Vector2 jumpDir)
@@ -222,6 +230,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         canMove = true;
+    }
+
+    private IEnumerator DisableJump(float time)
+    {
+        avoidDoubleJump = true;
+
+        yield return new WaitForSeconds(time);
+
+        avoidDoubleJump = false;
     }
 
     void WallParticle()
