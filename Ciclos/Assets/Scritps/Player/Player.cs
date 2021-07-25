@@ -42,11 +42,6 @@ public class Player : MonoBehaviour
         Movement();
 
         if (col.isGrounded) {
-            if (isInterpolationDisabled && canChangeInterpolation) {
-                rb.interpolation = RigidbodyInterpolation2D.Interpolate;
-                rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-            }
-
             wallJumped = false;
             useBetterJump = true;
         }
@@ -57,6 +52,15 @@ public class Player : MonoBehaviour
             }
             else if (col.isOnWall) {
                 WallJump();
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (col.isGrounded) {
+            if (isInterpolationDisabled && canChangeInterpolation) {
+                rb.interpolation = RigidbodyInterpolation2D.Interpolate;
             }
         }
     }
@@ -142,7 +146,6 @@ public class Player : MonoBehaviour
             transform.parent = collision.gameObject.transform;
 
             rb.interpolation = RigidbodyInterpolation2D.None;
-            rb.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
 
             isInterpolationDisabled = true;
             canChangeInterpolation = false;

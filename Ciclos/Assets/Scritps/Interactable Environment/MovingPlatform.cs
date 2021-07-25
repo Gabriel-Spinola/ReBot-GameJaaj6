@@ -11,16 +11,9 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float delayToMove;
 
-    private Rigidbody2D rb;
-
     private Vector3 nextPos;
 
     private bool canMove = true;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
     private void Start()
     {
@@ -44,7 +37,9 @@ public class MovingPlatform : MonoBehaviour
             StartCoroutine(WaitToMove(delayToMove));
         }
 
-        rb.transform.position = Vector2.MoveTowards(transform.position, nextPos, speed * Time.fixedDeltaTime);
+        Debug.Log("Should Move");
+
+        transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.fixedDeltaTime);
     }
 
     private IEnumerator WaitToMove(float time)
