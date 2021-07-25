@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerGraphics : MonoBehaviour
 {
+    [SerializeField] private Animator scaleAnimator = null;
+    [SerializeField] private Transform height = null;
+
     private Player player = null;
     private Collision col = null;
     private SpriteRenderer sr = null;
     private Animator anim = null;
-    
     private InputManager inputManager = null;
+
+    private float landAirTime;
+
+    private bool hasLanded;
 
     private void Awake()
     {
@@ -23,6 +29,11 @@ public class PlayerGraphics : MonoBehaviour
 
     private void Update()
     {
+        SetAnimationBools();
+    }
+
+    private void SetAnimationBools()
+    {
         anim.SetBool("OnGround", col.isGrounded);
         anim.SetBool("OnWall", col.isOnWall);
         anim.SetBool("OnRightWall", col.isOnRightWall);
@@ -35,9 +46,15 @@ public class PlayerGraphics : MonoBehaviour
         anim.SetFloat("VerticalVelocity", yVel);
     }
 
-    public void SetTrigger(string triggerID)
+    public void SetTrigger(string triggerID = "", string heightTriggerID = "")
     {
-        anim.SetTrigger(triggerID);
+        if (triggerID != "") {
+            anim.SetTrigger(triggerID);
+        }
+
+        if (heightTriggerID != "") {
+            scaleAnimator.SetTrigger(heightTriggerID);
+        }
     }
 
     public void Flip(int side)

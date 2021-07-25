@@ -39,7 +39,10 @@ public class Player : MonoBehaviour
     private bool canChangeInterpolation = false;
     private bool disableInterpolation = false;
 
+    private bool prevGrounded = false;
+
     private int side = 1;
+    private int canJump = 0;
 
     private void Awake()
     {
@@ -50,21 +53,30 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (col.isGrounded && !prevGrounded) {
+            playerGraphics.SetTrigger("", "Squash");
+        }
+
         BetterJump();
         Movement();
 
         playerGraphics.SetMovement(rb.velocity.y);
 
+        canJump--;
+
         if (col.isGrounded) {
+            canJump = 20;
+
             wallJumped = false;
             useBetterJump = true;
         }
 
         if (InputManager.keyJump) {
-            if (col.isGrounded) {
+            if (canJump > 0) {
                 Jump(jumpForce);
             }
-            else if (col.isOnWall) {
+            
+            if (!col.isGrounded && col.isOnWall) {
                 WallJump();
             }
         }
@@ -84,6 +96,8 @@ public class Player : MonoBehaviour
             side = (int) InputManager.xAxis;
             playerGraphics.Flip(side);
         }
+
+        prevGrounded = col.isGrounded;
     }
 
     private void FixedUpdate()
@@ -121,16 +135,20 @@ public class Player : MonoBehaviour
 
     public void Jump(float jumpForce)
     {
-        playerGraphics.SetTrigger("Jump");
+        playerGraphics.SetTrigger("Jump", "Stretch");
 
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+        canJump = 0;
     }
 
     public void Jump(Vector2 jumpDir)
     {
-        playerGraphics.SetTrigger("Jump");
+        playerGraphics.SetTrigger("Jump", "Stretch");
 
         rb.velocity = jumpDir;
+
+        canJump = 0;
     }
 
     private void WallJump()
