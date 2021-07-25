@@ -6,6 +6,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private ParticleSystem jumpParticle;
+    [SerializeField] private ParticleSystem wallJumpParticle;
+    [SerializeField] private ParticleSystem slideParticle;
+
     [SerializeField] private LayerMask whatIsSpikes = 0;
 
     public InputManager InputManager;
@@ -59,6 +63,7 @@ public class Player : MonoBehaviour
 
         BetterJump();
         Movement();
+        WallParticle();
 
         playerGraphics.SetMovement(rb.velocity.y);
 
@@ -135,19 +140,27 @@ public class Player : MonoBehaviour
 
     public void Jump(float jumpForce)
     {
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = jumpParticle;
+
         playerGraphics.SetTrigger("Jump", "Stretch");
 
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
+        particle.Play();
         canJump = 0;
     }
 
     public void Jump(Vector2 jumpDir)
     {
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = wallJumpParticle;
+
         playerGraphics.SetTrigger("Jump", "Stretch");
 
         rb.velocity = jumpDir;
 
+        particle.Play();
         canJump = 0;
     }
 
@@ -210,6 +223,21 @@ public class Player : MonoBehaviour
 
         canMove = true;
     }
+
+    void WallParticle()
+    {
+        var main = slideParticle.main;
+
+        if (wallSlide) {
+            slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+            main.startColor = Color.white;
+        }
+        else {
+            main.startColor = Color.clear;
+        }
+    }
+
+    int ParticleSide() => col.isOnRightWall ? 1 : -1;
 
     private void Die()
     {
