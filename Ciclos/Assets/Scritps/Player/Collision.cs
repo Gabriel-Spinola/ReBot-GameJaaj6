@@ -42,7 +42,7 @@ public class Collision : MonoBehaviour
         wallSide = isOnRightWall ? -1 : 1;
 
         isGrounded = Physics2D.OverlapBox((Vector2) transform.position + bottomColOffset, bottomColSize, 0f, whatIsBlocks);
-        isGroundedEarly = Physics2D.OverlapBox((Vector2) transform.position + bottomColOffset, new Vector2(bottomColSize.x - .12f, bottomColSize.y + .2f), 0f, whatIsBlocks);
+        isGroundedEarly = Physics2D.OverlapBox((Vector2) transform.position + new Vector2(bottomColOffset.x, bottomColOffset.y - .12f), new Vector2(bottomColSize.x, bottomColSize.y + .2f), 0f, whatIsBlocks);
     }
 
     private void OnDrawGizmosSelected()
