@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerGraphics : MonoBehaviour
 {
     [SerializeField] private Animator scaleAnimator = null;
-    [SerializeField] private Transform height = null;
 
     private Player player = null;
     private Collision col = null;
