@@ -67,18 +67,21 @@ public class FallingPlatform : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        rb.isKinematic = false;
-        GetComponent<Collider2D>().isTrigger = true;
+        GetComponent<TargetJoint2D>().enabled = false;
         falled = true;
 
         StartCoroutine(Respawn(respawnTime));
+
+        yield return new WaitForSeconds(.5f);
+
+        GetComponent<Collider2D>().isTrigger = true;
     }
 
     private IEnumerator Respawn(float time)
     {
         yield return new WaitForSeconds(time);
 
-        rb.isKinematic = true;
+        GetComponent<TargetJoint2D>().enabled = true;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         transform.position = initialPos;
         falled = false;
