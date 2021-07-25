@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     private bool useBetterJump = true;
     private bool isInterpolationDisabled = false;
     private bool canChangeInterpolation = false;
+    private bool disableInterpolation = false;
 
     private int side = 1;
 
@@ -90,7 +91,13 @@ public class Player : MonoBehaviour
         if (col.isGrounded) {
             if (isInterpolationDisabled && canChangeInterpolation) {
                 rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+                disableInterpolation = false;
             }
+        }
+
+        if (disableInterpolation) {
+            rb.interpolation = RigidbodyInterpolation2D.None;
         }
     }
 
@@ -204,7 +211,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform")) {
             transform.parent = collision.gameObject.transform;
 
-            rb.interpolation = RigidbodyInterpolation2D.None;
+            disableInterpolation = true;
 
             isInterpolationDisabled = true;
             canChangeInterpolation = false;
