@@ -6,8 +6,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private InputManager InputManager = null;
+    [SerializeField] private ParticleSystem jumpParticle;
+    [SerializeField] private ParticleSystem wallJumpParticle;
+    [SerializeField] private ParticleSystem slideParticle;
+
     [SerializeField] private LayerMask whatIsSpikes = 0;
+
+    public InputManager InputManager;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
@@ -21,25 +26,53 @@ public class Player : MonoBehaviour
     [Header("Walljump")]
     [SerializeField] private float wallJumpForce = 10f;
 
+    [Header("WallSlide")]
+    [SerializeField] private float slideSpeed = 6f;
+    [SerializeField] private float slideDelay = 1f;
+
+    [HideInInspector] public bool canMove = true;
+    [HideInInspector] public bool wallSlide = false;
+
     private Rigidbody2D rb = null;
     private Collision col = null;
+    private PlayerGraphics playerGraphics = null;
 
-    private bool canMove = true;
     private bool wallJumped = false;
+    private bool avoidDoubleJump = false;
     private bool useBetterJump = true;
     private bool isInterpolationDisabled = false;
     private bool canChangeInterpolation = false;
+    private bool disableInterpolation = false;
+
+    private bool prevGrounded = false;
+
+    private int side = 1;
+    private int canJump = 0;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collision>();
+        playerGraphics = GetComponentInChildren<PlayerGraphics>();
     }
 
     private void Update()
     {
+        if (col.isGrounded && !prevGrounded) {
+            playerGraphics.SetTrigger("", "Squash");
+        }
+
         BetterJump();
         Movement();
+        WallParticle();
+
+        playerGraphics.SetMovement(rb.velocity.y);
+
+        canJump--;
+
+        if (col.isGroundedEarly) {
+            canJump = 20;
+        }
 
         if (col.isGrounded) {
             wallJumped = false;
@@ -47,13 +80,32 @@ public class Player : MonoBehaviour
         }
 
         if (InputManager.keyJump) {
-            if (col.isGrounded) {
+            if (canJump > 0) {
                 Jump(jumpForce);
             }
-            else if (col.isOnWall) {
+            
+            if (!col.isGrounded && col.isOnWall) {
                 WallJump();
             }
         }
+
+        if (col.isOnWall && !col.isGrounded) {
+            if (InputManager.xAxis != 0) {
+                wallSlide = true;
+
+                StartCoroutine(WallSlide(slideDelay));
+            }
+        }
+
+        if (!col.isOnWall || col.isGrounded)
+            wallSlide = false;
+
+        if (InputManager.xAxis != 0 && !wallSlide && canMove) {
+            side = (int) InputManager.xAxis;
+            playerGraphics.Flip(side);
+        }
+
+        prevGrounded = col.isGrounded;
     }
 
     private void FixedUpdate()
@@ -61,7 +113,13 @@ public class Player : MonoBehaviour
         if (col.isGrounded) {
             if (isInterpolationDisabled && canChangeInterpolation) {
                 rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+                disableInterpolation = false;
             }
+        }
+
+        if (disableInterpolation) {
+            rb.interpolation = RigidbodyInterpolation2D.None;
         }
     }
 
@@ -85,22 +143,69 @@ public class Player : MonoBehaviour
 
     public void Jump(float jumpForce)
     {
+        if (avoidDoubleJump)
+            return;
+
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = jumpParticle;
+
+        playerGraphics.SetTrigger("Jump", "Stretch");
+
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+        particle.Play();
+        canJump = 0;
+
+        StartCoroutine(DisableJump(.2f));
     }
 
     public void Jump(Vector2 jumpDir)
     {
+        slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+        ParticleSystem particle = wallJumpParticle;
+
+        playerGraphics.SetTrigger("Jump", "Stretch");
+
         rb.velocity = jumpDir;
+
+        particle.Play();
+        canJump = 0;
     }
 
     private void WallJump()
     {
+        if (( side == 1 && col.isOnRightWall ) || side == -1 && !col.isOnRightWall) {
+            side *= -1;
+            playerGraphics.Flip(side);
+        }
+
         StartCoroutine(DisableMovement(.2f));
 
         int wallJumpDir = col.isOnRightWall ? -1 : col.isOnLeftWall ? 1 : 0;
         wallJumped = true;
 
         Jump(Vector2.right * wallJumpForce / 1.5f * wallJumpDir + Vector2.up * wallJumpForce / 1.2f);
+    }
+
+    private IEnumerator WallSlide(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (col.wallSide != side)
+            playerGraphics.Flip(side * -1);
+
+        if (!canMove)
+            yield break;
+
+        bool pushingWall = false;
+
+        if ((rb.velocity.x > 0 && col.isOnRightWall) || (rb.velocity.x < 0 && col.isOnLeftWall)) {
+            pushingWall = true;
+        }
+
+        float push = pushingWall ? 0 : rb.velocity.x;
+
+        rb.velocity = new Vector2(push, -slideSpeed);
     }
 
     /// <summary>
@@ -127,6 +232,30 @@ public class Player : MonoBehaviour
         canMove = true;
     }
 
+    private IEnumerator DisableJump(float time)
+    {
+        avoidDoubleJump = true;
+
+        yield return new WaitForSeconds(time);
+
+        avoidDoubleJump = false;
+    }
+
+    void WallParticle()
+    {
+        var main = slideParticle.main;
+
+        if (wallSlide) {
+            slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+            main.startColor = Color.white;
+        }
+        else {
+            main.startColor = Color.clear;
+        }
+    }
+
+    int ParticleSide() => col.isOnRightWall ? 1 : -1;
+
     private void Die()
     {
         Debug.Log("DIED");
@@ -145,7 +274,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform")) {
             transform.parent = collision.gameObject.transform;
 
-            rb.interpolation = RigidbodyInterpolation2D.None;
+            disableInterpolation = true;
 
             isInterpolationDisabled = true;
             canChangeInterpolation = false;
