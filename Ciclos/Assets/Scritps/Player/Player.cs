@@ -6,8 +6,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private InputManager InputManager = null;
     [SerializeField] private LayerMask whatIsSpikes = 0;
+
+    public InputManager InputManager;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
@@ -21,25 +22,37 @@ public class Player : MonoBehaviour
     [Header("Walljump")]
     [SerializeField] private float wallJumpForce = 10f;
 
+    [Header("WallSlide")]
+    [SerializeField] private float slideSpeed = 6f;
+    [SerializeField] private float slideDelay = 1f;
+
+    [HideInInspector] public bool canMove = true;
+    [HideInInspector] public bool wallSlide = false;
+
     private Rigidbody2D rb = null;
     private Collision col = null;
+    private PlayerGraphics playerGraphics = null;
 
-    private bool canMove = true;
     private bool wallJumped = false;
     private bool useBetterJump = true;
     private bool isInterpolationDisabled = false;
     private bool canChangeInterpolation = false;
 
+    private int side = 1;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collision>();
+        playerGraphics = GetComponentInChildren<PlayerGraphics>();
     }
 
     private void Update()
     {
         BetterJump();
         Movement();
+
+        playerGraphics.SetMovement(rb.velocity.y);
 
         if (col.isGrounded) {
             wallJumped = false;
@@ -53,6 +66,22 @@ public class Player : MonoBehaviour
             else if (col.isOnWall) {
                 WallJump();
             }
+        }
+
+        if (col.isOnWall && !col.isGrounded) {
+            if (InputManager.xAxis != 0) {
+                wallSlide = true;
+
+                StartCoroutine(WallSlide(slideDelay));
+            }
+        }
+
+        if (!col.isOnWall || col.isGrounded)
+            wallSlide = false;
+
+        if (InputManager.xAxis != 0 && !wallSlide && canMove) {
+            side = (int) InputManager.xAxis;
+            playerGraphics.Flip(side);
         }
     }
 
@@ -85,22 +114,52 @@ public class Player : MonoBehaviour
 
     public void Jump(float jumpForce)
     {
+        playerGraphics.SetTrigger("Jump");
+
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
     public void Jump(Vector2 jumpDir)
     {
+        playerGraphics.SetTrigger("Jump");
+
         rb.velocity = jumpDir;
     }
 
     private void WallJump()
     {
+        if (( side == 1 && col.isOnRightWall ) || side == -1 && !col.isOnRightWall) {
+            side *= -1;
+            playerGraphics.Flip(side);
+        }
+
         StartCoroutine(DisableMovement(.2f));
 
         int wallJumpDir = col.isOnRightWall ? -1 : col.isOnLeftWall ? 1 : 0;
         wallJumped = true;
 
         Jump(Vector2.right * wallJumpForce / 1.5f * wallJumpDir + Vector2.up * wallJumpForce / 1.2f);
+    }
+
+    private IEnumerator WallSlide(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (col.wallSide != side)
+            playerGraphics.Flip(side * -1);
+
+        if (!canMove)
+            yield break;
+
+        bool pushingWall = false;
+
+        if ((rb.velocity.x > 0 && col.isOnRightWall) || (rb.velocity.x < 0 && col.isOnLeftWall)) {
+            pushingWall = true;
+        }
+
+        float push = pushingWall ? 0 : rb.velocity.x;
+
+        rb.velocity = new Vector2(push, -slideSpeed);
     }
 
     /// <summary>

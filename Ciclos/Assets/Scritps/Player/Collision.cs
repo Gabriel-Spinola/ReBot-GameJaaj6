@@ -23,6 +23,7 @@ public class Collision : MonoBehaviour
     public bool isOnRightWall = false;
     public bool isOnLeftWall = false;
     public bool isOnWall = false;
+    public int wallSide;
 
     [Space]
 
@@ -32,7 +33,9 @@ public class Collision : MonoBehaviour
     {
         isOnRightWall = Physics2D.OverlapCircle((Vector2) transform.position + rightColOffset, horizontalColRadius, whatIsBlocks);
         isOnLeftWall = Physics2D.OverlapCircle((Vector2) transform.position + leftColOffset, horizontalColRadius, whatIsBlocks);
+
         isOnWall = isOnLeftWall || isOnRightWall;
+        wallSide = isOnRightWall ? -1 : 1;
 
         isGrounded = Physics2D.OverlapBox((Vector2) transform.position + bottomColOffset, bottomColSize, 0f, whatIsBlocks);
     }
