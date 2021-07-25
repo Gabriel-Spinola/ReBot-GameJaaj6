@@ -26,6 +26,42 @@ TextureImporter:
   - first:
       213: 7112388471529538009
     second: oi_7
+  - first:
+      213: 2850939458822075197
+    second: gilberto_andando_0
+  - first:
+      213: -3097321036817984646
+    second: gilberto_andando_1
+  - first:
+      213: -3605977188384584475
+    second: gilberto_andando_2
+  - first:
+      213: -6957548683877562954
+    second: gilberto_andando_3
+  - first:
+      213: -3237830948381573792
+    second: gilberto_andando_4
+  - first:
+      213: -8555769415190191110
+    second: gilberto_andando_5
+  - first:
+      213: -41746983056901992
+    second: gilberto_andando_6
+  - first:
+      213: -9030188272471122066
+    second: gilberto_andando_7
+  - first:
+      213: 4536252143103952749
+    second: gilberto_andando_8
+  - first:
+      213: 965512323167566267
+    second: gilberto_andando_9
+  - first:
+      213: -548903794324867640
+    second: gilberto_andando_10
+  - first:
+      213: -5871329091246285223
+    second: gilberto_andando_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -85,7 +121,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -97,7 +133,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -109,7 +145,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -123,7 +159,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oi_0
+      name: gilberto_andando_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d25840bde094ba0800000000000000
-      internalID: -6104331486087533166
+      spriteID: d33fb373552909720800000000000000
+      internalID: 2850939458822075197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oi_1
+      name: gilberto_andando_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 740cbce504ca1eb80800000000000000
-      internalID: -8367217240209375161
+      spriteID: a739e156dea1405d0800000000000000
+      internalID: -3097321036817984646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oi_2
+      name: gilberto_andando_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e5c2eabc33c2dff0800000000000000
-      internalID: -12733183327812122
+      spriteID: 5eccc2a3adef4fdc0800000000000000
+      internalID: -3605977188384584475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oi_3
+      name: gilberto_andando_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aaf518c3a7851fd20800000000000000
-      internalID: 3310524483118391210
+      spriteID: 6b5cdfda552d17f90800000000000000
+      internalID: -6957548683877562954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oi_4
+      name: gilberto_andando_4
       rect:
         serializedVersion: 2
         x: 128
@@ -221,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54375548927fcb1c0800000000000000
-      internalID: -4486439371081944251
+      spriteID: 06d33fe38e9e013d0800000000000000
+      internalID: -3237830948381573792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oi_5
+      name: gilberto_andando_5
       rect:
         serializedVersion: 2
         x: 160
@@ -242,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc6ee213b29701900800000000000000
-      internalID: 653155172384433869
+      spriteID: af3ef6b1c0dc34980800000000000000
+      internalID: -8555769415190191110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oi_6
+      name: gilberto_andando_6
       rect:
         serializedVersion: 2
         x: 192
@@ -263,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bbf376e5606b2880800000000000000
-      internalID: -8634701869778469965
+      spriteID: 898f270175fab6ff0800000000000000
+      internalID: -41746983056901992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: oi_7
+      name: gilberto_andando_7
       rect:
         serializedVersion: 2
         x: 224
@@ -284,8 +320,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d10a1eb1a744b260800000000000000
-      internalID: 7112388471529538009
+      spriteID: e6fd5743c935ea280800000000000000
+      internalID: -9030188272471122066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gilberto_andando_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67c0514a4104fe30800000000000000
+      internalID: 4536252143103952749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gilberto_andando_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb93aa8a750366d00800000000000000
+      internalID: 965512323167566267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gilberto_andando_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c5f66348e6e168f0800000000000000
+      internalID: -548903794324867640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gilberto_andando_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e19d49c49d48ea0800000000000000
+      internalID: -5871329091246285223
       vertices: []
       indices: 
       edges: []

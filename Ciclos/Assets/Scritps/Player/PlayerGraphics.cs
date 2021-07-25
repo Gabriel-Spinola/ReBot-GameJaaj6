@@ -6,15 +6,13 @@ public class PlayerGraphics : MonoBehaviour
 {
     [SerializeField] private Animator scaleAnimator = null;
 
+    [HideInInspector] public bool disableAnimation = false;
+
     private Player player = null;
     private Collision col = null;
     private SpriteRenderer sr = null;
     private Animator anim = null;
     private InputManager inputManager = null;
-
-    private float landAirTime;
-
-    private bool hasLanded;
 
     private void Awake()
     {
@@ -28,6 +26,9 @@ public class PlayerGraphics : MonoBehaviour
 
     private void Update()
     {
+        if (disableAnimation)
+            return;
+
         SetAnimationBools();
     }
 
@@ -41,12 +42,18 @@ public class PlayerGraphics : MonoBehaviour
 
     public void SetMovement(float yVel)
     {
+        if (disableAnimation)
+            return;
+
         anim.SetFloat("HorizontalAxis", Mathf.Abs(inputManager.xAxis));
         anim.SetFloat("VerticalVelocity", yVel);
     }
 
     public void SetTrigger(string triggerID = "", string heightTriggerID = "")
     {
+        if (disableAnimation)
+            return;
+
         if (triggerID != "") {
             anim.SetTrigger(triggerID);
         }
@@ -58,6 +65,9 @@ public class PlayerGraphics : MonoBehaviour
 
     public void Flip(int side)
     {
+        if (disableAnimation)
+            return;
+
         if (player.wallSlide) {
             if (side == -1 && sr.flipX)
                 return;
@@ -67,5 +77,27 @@ public class PlayerGraphics : MonoBehaviour
         }
 
         sr.flipX = side != 1;
+    }
+
+    private void ResetAnimation()
+    {
+        anim.SetBool("OnGround", false);
+        anim.SetBool("OnWall", false);
+        anim.SetBool("OnRightWall", false);
+        anim.SetBool("CanMove", false);
+
+        anim.SetFloat("HorizontalAxis", -0.1f);
+        anim.SetFloat("VerticalVelocity", 0f);
+    }
+
+    public IEnumerator DisableAnimation(float time)
+    {
+        ResetAnimation();
+
+        disableAnimation = true;
+
+        yield return new WaitForSeconds(time);
+
+        disableAnimation = false;
     }
 }

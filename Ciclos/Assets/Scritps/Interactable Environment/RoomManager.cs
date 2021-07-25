@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    private GameObject virtualCamera;
+    private GameObject virtualCamera = null;
+    private Player player = null;
 
     private void Awake()
     {
         virtualCamera = transform.GetChild(0).gameObject;
         virtualCamera.SetActive(false);
+
+        player = FindObjectOfType<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,6 +26,9 @@ public class RoomManager : MonoBehaviour
     {
         if (other.CompareTag("Player") && !other.isTrigger) {
             virtualCamera.SetActive(false);
+
+            StartCoroutine(player.DisablePlayer(.7f));
+            StartCoroutine(player.playerGraphics.DisableAnimation(.7f));
         }
     }
 }

@@ -30,12 +30,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float slideSpeed = 6f;
     [SerializeField] private float slideDelay = 1f;
 
+    [HideInInspector] public PlayerGraphics playerGraphics = null;
+
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool wallSlide = false;
 
     private Rigidbody2D rb = null;
     private Collision col = null;
-    private PlayerGraphics playerGraphics = null;
 
     private bool wallJumped = false;
     private bool avoidDoubleJump = false;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
     private bool isInterpolationDisabled = false;
     private bool canChangeInterpolation = false;
     private bool disableInterpolation = false;
+    private bool isPlayerDisabled = false;
 
     private bool prevGrounded = false;
 
@@ -58,6 +60,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (isPlayerDisabled)
+            return;
+
         if (col.isGrounded && !prevGrounded) {
             playerGraphics.SetTrigger("", "Squash");
         }
@@ -223,7 +228,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator DisableMovement(float time)
+    public IEnumerator DisableMovement(float time)
     {
         canMove = false;
 
@@ -231,8 +236,19 @@ public class Player : MonoBehaviour
 
         canMove = true;
     }
+    
+    public IEnumerator DisablePlayer(float time)
+    {
+        isPlayerDisabled = true;
+        rb.velocity = Vector2.zero;
+        InputManager.xAxis = 0f;
 
-    private IEnumerator DisableJump(float time)
+        yield return new WaitForSeconds(time);
+
+        isPlayerDisabled = false;
+    }
+
+    public IEnumerator DisableJump(float time)
     {
         avoidDoubleJump = true;
 

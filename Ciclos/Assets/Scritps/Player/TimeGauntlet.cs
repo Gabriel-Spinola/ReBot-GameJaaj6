@@ -15,10 +15,16 @@ public class TimeGauntlet : MonoBehaviour
     {
         if (isOnPast && inputManager.keyGauntlet) {
             foreach (GameObject @object in present) {
+                if (@object is null)
+                    break;
+
                 @object.SetActive(true);
             }
 
             foreach (GameObject @object in past) {
+                if (@object is null)
+                    break;
+
                 @object.SetActive(false);
             }
 
@@ -26,10 +32,16 @@ public class TimeGauntlet : MonoBehaviour
         }
         else if (inputManager.keyGauntlet) {
             foreach (GameObject @object in present) {
+                if (@object is null)
+                    break;
+
                 @object.SetActive(false);
             }
 
             foreach (GameObject @object in past) {
+                if (@object is null)
+                    break;
+
                 @object.SetActive(true);
             }
 
