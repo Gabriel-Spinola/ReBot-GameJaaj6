@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] private bool lockAfterExit;
+    [SerializeField] private bool verticalTransition;
     [SerializeField] private double roomID;
     
     private GameObject virtualCamera = null;
@@ -34,6 +35,8 @@ public class Room : MonoBehaviour
         if (other.CompareTag("Player") && !other.isTrigger) {
             if (lockAfterExit)
                 GetComponent<Collider2D>().isTrigger = false;
+            if (verticalTransition)
+                roomManager.player.Jump(12f);
 
             virtualCamera.SetActive(false);
 

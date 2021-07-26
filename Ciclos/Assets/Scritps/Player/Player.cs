@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private LayerMask whatIsSpikes = 0;
 
+    [SerializeField] private Vector2 s;
+    [SerializeField] private float f;
+
     public InputManager InputManager;
 
     [Header("Movement")]
@@ -60,6 +63,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
+        if (col.isGrounded) {
+            if (Physics2D.OverlapCircle((Vector2) transform.position + s, f).CompareTag("Platform")) {
+                Die();
+            }
+        }
+#endif
+
         if (isPlayerDisabled)
             return;
 
@@ -211,6 +222,8 @@ public class Player : MonoBehaviour
         float push = pushingWall ? 0 : rb.velocity.x;
 
         rb.velocity = new Vector2(push, -slideSpeed);
+
+        yield return 0;
     }
 
     /// <summary>
@@ -228,6 +241,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void WallParticle()
+    {
+        var main = slideParticle.main;
+
+        if (wallSlide) {
+            slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
+            main.startColor = Color.white;
+        }
+        else {
+            main.startColor = Color.clear;
+        }
+    }
+
+    private int ParticleSide() => col.isOnRightWall ? 1 : -1;
+
     public IEnumerator DisableMovement(float time)
     {
         canMove = false;
@@ -236,11 +264,11 @@ public class Player : MonoBehaviour
 
         canMove = true;
     }
-    
+
     public IEnumerator DisablePlayer(float time)
     {
         isPlayerDisabled = true;
-        rb.velocity = Vector2.zero;
+        rb.velocity = new Vector2(0f, rb.velocity.y);
         InputManager.xAxis = 0f;
 
         yield return new WaitForSeconds(time);
@@ -256,21 +284,6 @@ public class Player : MonoBehaviour
 
         avoidDoubleJump = false;
     }
-
-    void WallParticle()
-    {
-        var main = slideParticle.main;
-
-        if (wallSlide) {
-            slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
-            main.startColor = Color.white;
-        }
-        else {
-            main.startColor = Color.clear;
-        }
-    }
-
-    int ParticleSide() => col.isOnRightWall ? 1 : -1;
 
     private void Die()
     {
@@ -304,5 +317,10 @@ public class Player : MonoBehaviour
 
             canChangeInterpolation = true;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere((Vector2) transform.position + s, f);
     }
 }
