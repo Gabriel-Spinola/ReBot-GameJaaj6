@@ -12,7 +12,8 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-        spawnPosition = GameObject.Find($"Spawner{ CurrentRoom }").transform.position;
+        if (GameObject.Find($"Spawner{ CurrentRoom }") != null)
+            spawnPosition = GameObject.Find($"Spawner{ CurrentRoom }").transform.position;
 
         player = FindObjectOfType<Player>();
 

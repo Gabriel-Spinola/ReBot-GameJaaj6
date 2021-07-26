@@ -38,6 +38,7 @@ public class PlayerGraphics : MonoBehaviour
         anim.SetBool("OnWall", col.isOnWall);
         anim.SetBool("OnRightWall", col.isOnRightWall);
         anim.SetBool("CanMove", player.canMove);
+        anim.SetBool("WallSlide", player.wallSlide);
     }
 
     public void SetMovement(float yVel)

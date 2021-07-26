@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEngine.SceneManagement;
-#endif
-
 public class InputManager : MonoBehaviour
 {
     public float xAxis;
