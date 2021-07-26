@@ -26,9 +26,5 @@ public class InputManager : MonoBehaviour
         keyJumpHold = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
 
         keyGauntlet = Input.GetKeyDown(KeyCode.F);
-
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.RightAlt)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-#endif
     }
 }

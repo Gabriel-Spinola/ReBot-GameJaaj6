@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    private GameObject virtualCamera = null;
+    public static RoomManager _I = null;
+    public static int CurrentRoom = 1;
+
     private Player player = null;
 
-    private void Awake()
+    private Vector3 spawnPosition = Vector3.zero;
+
+    private void Update()
     {
-        virtualCamera = transform.GetChild(0).gameObject;
-        virtualCamera.SetActive(false);
+        spawnPosition = GameObject.Find($"Spawner{ CurrentRoom }").transform.position;
+
+        Debug.Log(CurrentRoom);
+        Debug.Log(GameObject.Find($"Spawner{ CurrentRoom }").name);
 
         player = FindObjectOfType<Player>();
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.RightAlt)) {
+            Respawn();
+        }
+#endif
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void Respawn()
     {
-        if (other.CompareTag("Player") && !other.isTrigger) {
-            virtualCamera.SetActive(true);
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && !other.isTrigger) {
-            virtualCamera.SetActive(false);
-
-            StartCoroutine(player.DisablePlayer(.7f));
-            StartCoroutine(player.playerGraphics.DisableAnimation(.7f));
-        }
+        player.transform.position = spawnPosition;
     }
 }
