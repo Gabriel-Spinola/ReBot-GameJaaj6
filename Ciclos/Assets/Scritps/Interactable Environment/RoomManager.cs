@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public static RoomManager _I = null;
     public static int CurrentRoom = 1;
 
     private Player player = null;
@@ -14,9 +13,6 @@ public class RoomManager : MonoBehaviour
     private void Update()
     {
         spawnPosition = GameObject.Find($"Spawner{ CurrentRoom }").transform.position;
-
-        Debug.Log(CurrentRoom);
-        Debug.Log(GameObject.Find($"Spawner{ CurrentRoom }").name);
 
         player = FindObjectOfType<Player>();
 

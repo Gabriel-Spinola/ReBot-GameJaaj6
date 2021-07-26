@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public static Room _I = null;
-
     private GameObject virtualCamera = null;
-    private Player player = null;
 
     private void Awake()
     {
-        _I = this;
-
         virtualCamera = transform.GetChild(0).gameObject;
         virtualCamera.SetActive(false);
-
-        player = FindObjectOfType<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
