@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] private bool canComeBack;
+    [SerializeField] private double roomID;
+    
     private GameObject virtualCamera = null;
     private RoomManager roomManager = null;
 
@@ -12,6 +15,8 @@ public class Room : MonoBehaviour
         virtualCamera = transform.GetChild(0).gameObject;
         virtualCamera.SetActive(false);
 
+        transform.GetChild(1).name = $"{ transform.GetChild(1).name }{ roomID }";
+
         roomManager = FindObjectOfType<RoomManager>();
     }
 
@@ -19,19 +24,18 @@ public class Room : MonoBehaviour
     {
         if (other.CompareTag("Player") && !other.isTrigger) {
             virtualCamera.SetActive(true);
+
+            RoomManager.CurrentRoom = roomID;
         }
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !other.isTrigger) {
-            GetComponent<Collider2D>().isTrigger = false;
             virtualCamera.SetActive(false);
 
             StartCoroutine(roomManager.player.DisablePlayer(.7f));
             StartCoroutine(roomManager.player.playerGraphics.DisableAnimation(.7f));
-
-            RoomManager.CurrentRoom++;
         }
     }
 }

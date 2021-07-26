@@ -28,7 +28,7 @@ public class PlayerGraphics : MonoBehaviour
     {
         if (disableAnimation)
             return;
-
+        
         SetAnimationBools();
     }
 

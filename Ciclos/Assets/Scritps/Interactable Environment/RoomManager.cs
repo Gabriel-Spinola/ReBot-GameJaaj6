@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public static int CurrentRoom = 1;
+    public static double CurrentRoom = 1;
 
     [HideInInspector] public Player player = null;
 
