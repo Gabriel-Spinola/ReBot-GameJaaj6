@@ -9538,7 +9538,7 @@ GameObject:
   - component: {fileID: 1716115500}
   - component: {fileID: 1716115499}
   m_Layer: 8
-  m_Name: New Sprite
+  m_Name: Transversable Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
