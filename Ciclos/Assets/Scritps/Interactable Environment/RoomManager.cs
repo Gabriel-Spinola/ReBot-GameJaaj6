@@ -6,7 +6,7 @@ public class RoomManager : MonoBehaviour
 {
     public static int CurrentRoom = 1;
 
-    private Player player = null;
+    [HideInInspector] public Player player = null;
 
     private Vector3 spawnPosition = Vector3.zero;
 
