@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] private bool canComeBack;
+    [SerializeField] private bool lockAfterExit;
     [SerializeField] private double roomID;
     
     private GameObject virtualCamera = null;
@@ -32,6 +32,9 @@ public class Room : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !other.isTrigger) {
+            if (lockAfterExit)
+                GetComponent<Collider2D>().isTrigger = false;
+
             virtualCamera.SetActive(false);
 
             StartCoroutine(roomManager.player.DisablePlayer(.7f));

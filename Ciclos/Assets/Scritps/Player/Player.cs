@@ -194,10 +194,10 @@ public class Player : MonoBehaviour
 
     private IEnumerator WallSlide(float time)
     {
-        yield return new WaitForSeconds(time);
-
         if (col.wallSide != side)
             playerGraphics.Flip(side * -1);
+
+        yield return new WaitForSeconds(time);
 
         if (!canMove)
             yield break;

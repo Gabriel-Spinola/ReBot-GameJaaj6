@@ -37,8 +37,6 @@ public class MovingPlatform : MonoBehaviour
             StartCoroutine(WaitToMove(delayToMove));
         }
 
-        Debug.Log("Should Move");
-
         transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.fixedDeltaTime);
     }
 
