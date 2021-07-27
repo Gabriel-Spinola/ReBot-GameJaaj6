@@ -23,10 +23,10 @@ public class Trampoline : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         if (Physics2D.OverlapCircle(transform.position, r, whatsIsPlayer)) {
-            player.SetUseBetterJump(false);
-            player.Jump(kockbackForce);
-
             animator.SetBool("IsActive", true);
+
+            player.SetUseBetterJump(false);
+            player.Jump(kockbackForce);   
         }
     }
 
