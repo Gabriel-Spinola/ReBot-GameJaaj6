@@ -9,13 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private ParticleSystem jumpParticle;
     [SerializeField] private ParticleSystem wallJumpParticle;
     [SerializeField] private ParticleSystem slideParticle;
+    [SerializeField] private RoomManager roomManager;
+
+    public InputManager InputManager;
 
     [SerializeField] private int whatIsSpikesLayerID = 0;
 
     [SerializeField] private Vector2 s;
     [SerializeField] private float f;
-
-    public InputManager InputManager;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
@@ -27,7 +28,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float lowJumpMultiplier = 2;
 
     [Header("Walljump")]
-    [SerializeField] private float wallJumpForce = 10f;
+    [SerializeField] private float wallJumpHeight = 10f;
+    [SerializeField] private float wallJumpSpeed = 10f;
 
     [Header("WallSlide")]
     [SerializeField] private float slideSpeed = 6f;
@@ -63,16 +65,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
-        if (col.isGrounded) {
-            if (Physics2D.OverlapCircle((Vector2) transform.position + s, f).CompareTag("Platform")) {
-                Die();
-            }
-        }
-#endif
-
         if (isPlayerDisabled)
             return;
+
+        if (IsCrushed()) {
+            Die();
+        }
 
         if (col.isGrounded && !prevGrounded) {
             playerGraphics.SetTrigger("", "Squash");
@@ -105,7 +103,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (col.isOnWall && !col.isGrounded) {
+        if (col.isOnWall && !col.isGrounded && !InputManager.keyJump && rb.velocity.y < 0.01f) {
             if (InputManager.xAxis != 0) {
                 wallSlide = true;
 
@@ -200,7 +198,7 @@ public class Player : MonoBehaviour
         int wallJumpDir = col.isOnRightWall ? -1 : col.isOnLeftWall ? 1 : 0;
         wallJumped = true;
 
-        Jump(Vector2.right * wallJumpForce / 1.5f * wallJumpDir + Vector2.up * wallJumpForce / 1.2f);
+        Jump(Vector2.right * wallJumpSpeed / 1.2f * wallJumpDir + Vector2.up * wallJumpHeight / 1.2f);
     }
 
     private IEnumerator WallSlide(float time)
@@ -210,7 +208,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        if (!canMove)
+        if (!canMove || InputManager.keyJump || InputManager.keyJumpHold)
             yield break;
 
         bool pushingWall = false;
@@ -222,8 +220,6 @@ public class Player : MonoBehaviour
         float push = pushingWall ? 0 : rb.velocity.x;
 
         rb.velocity = new Vector2(push, -slideSpeed);
-
-        yield return 0;
     }
 
     /// <summary>
@@ -256,6 +252,8 @@ public class Player : MonoBehaviour
 
     private int ParticleSide() => col.isOnRightWall ? 1 : -1;
 
+    private bool IsCrushed() => col.isGrounded && Physics2D.OverlapCircle((Vector2) transform.position + s, f).CompareTag("Platform");
+
     public IEnumerator DisableMovement(float time)
     {
         canMove = false;
@@ -287,7 +285,14 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("DIED");
+#if UNITY_EDITOR
+        Debug.Log("Died");
+
+        return;
+#endif
+#pragma warning disable CS0162
+        roomManager.Respawn();
+#pragma warning restore CS0162
     }
 
     public void TakeDamage() => Die();
@@ -298,8 +303,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == whatIsSpikesLayerID) {
             TakeDamage();
-
-            Debug.Log("collided with spike");
         }
 
         if (collision.gameObject.CompareTag("Platform")) {

@@ -34,7 +34,7 @@ public class Trampoline : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) {
             Player player_ = collision.gameObject.GetComponent<Player>();
 
-            StartCoroutine(WaitToStart(.15f, player_));
+            StartCoroutine(WaitToStart(.12f, player_));
         }
     }
 
