@@ -7,6 +7,7 @@ public class Trampoline : MonoBehaviour
     [SerializeField] private LayerMask whatsIsPlayer = 0;
     [SerializeField] private float kockbackForce = 10f;
     [SerializeField] private float r = .2f;
+    [SerializeField] private float timeToActivate = .12f;
 
     private Animator animator;
 
@@ -34,7 +35,7 @@ public class Trampoline : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) {
             Player player_ = collision.gameObject.GetComponent<Player>();
 
-            StartCoroutine(WaitToStart(.12f, player_));
+            StartCoroutine(WaitToStart(timeToActivate, player_));
         }
     }
 
