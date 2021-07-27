@@ -9,12 +9,15 @@ public class PulseShooter : MonoBehaviour
     [SerializeField] private float timeToOverheat;
     [Tooltip("In Seconds")]
     [SerializeField] private float reloadDelay;
+    [SerializeField] private bool shootWhenCollidedWithlayer;
 
     private LaserBeam laserBeam = null;
 
     private const int maxIndex = 20;
     private float nextTimeToFire = 0f;
     private int currentIndex = 0;
+
+    private bool startShooting = false;
 
     protected virtual void Awake()
     {
@@ -37,8 +40,24 @@ public class PulseShooter : MonoBehaviour
             return;
         }
 
-        if (currentIndex >= 1) {
-            Shoot();
+        if (laserBeam.hit && shootWhenCollidedWithlayer) {
+            if (laserBeam.hit.collider.CompareTag("Player")) {
+                startShooting = true;
+            }
+
+            if (currentIndex >= 1 && startShooting) {
+                laserBeam.EnableLaser();
+                Shoot();
+            }
+            else {
+                laserBeam.DisableLaser();
+                laserBeam.UpdateLaser(laserBeam.preciptationLineRenderer);
+            }
+        }
+        else {
+            if (currentIndex >= 1) {
+                Shoot();
+            }
         }
 
         if (laserBeam.hit.collider.CompareTag("Player")) {
@@ -64,6 +83,8 @@ public class PulseShooter : MonoBehaviour
     {
         if (!laserBeam.isDisabled)
             laserBeam.DisableLaser();
+
+        startShooting = false;
 
         yield return new WaitForSeconds(time);
 
