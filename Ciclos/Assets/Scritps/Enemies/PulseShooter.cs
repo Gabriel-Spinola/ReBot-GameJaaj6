@@ -46,7 +46,6 @@ public class PulseShooter : MonoBehaviour
             }
 
             if (currentIndex >= 1 && startShooting) {
-                laserBeam.EnableLaser();
                 Shoot();
             }
             else {

@@ -3301,6 +3301,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6414047818436142250, guid: ae778f761d5ec6841ace8b6e8374fc00,
+        type: 3}
+      propertyPath: shootWhenCollidedWithlayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae778f761d5ec6841ace8b6e8374fc00, type: 3}
 --- !u!1001 &6452378022150605912
