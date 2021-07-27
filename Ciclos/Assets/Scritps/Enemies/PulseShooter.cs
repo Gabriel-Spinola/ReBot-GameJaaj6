@@ -12,8 +12,8 @@ public class PulseShooter : MonoBehaviour
 
     private LaserBeam laserBeam = null;
 
+    private const int maxIndex = 20;
     private float nextTimeToFire = 0f;
-    private int maxIndex = 20;
     private int currentIndex = 0;
 
     private void Awake()
@@ -38,6 +38,10 @@ public class PulseShooter : MonoBehaviour
 
         if (currentIndex >= 1) {
             Shoot();
+        }
+
+        if (laserBeam.hit.collider.CompareTag("Player")) {
+            laserBeam.hit.collider.gameObject.GetComponent<Player>().TakeDamage();
         }
     }
 

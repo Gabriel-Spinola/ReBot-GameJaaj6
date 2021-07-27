@@ -24,6 +24,7 @@ public class LaserBeam : MonoBehaviour
     [Range(5f, 80f)]
     [SerializeField] private float laserMaxDistance = 30f;
 
+    [HideInInspector] public RaycastHit2D hit;
     [HideInInspector] public bool isDisabled = false;
 
     private Transform direction = null;
@@ -65,6 +66,8 @@ public class LaserBeam : MonoBehaviour
         );
 
         if (hit) {
+            this.hit = hit;
+
             lineRenderer.SetPosition(1, hit.point);
         }
 
