@@ -2,79 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LaserBeam))]
 public class PulseShooter : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private Transform firePoint;
+    [Tooltip("In Rate")]
+    [SerializeField] private float timeToOverheat;
+    [Tooltip("In Seconds")]
+    [SerializeField] private float reloadDelay;
 
-    [SerializeField] private GameObject startVFX;
-    [SerializeField] private GameObject endVFX;
+    private LaserBeam laserBeam = null;
 
-    [SerializeField] private Vector2 laserDirection;
-    [SerializeField] private float laserMaxDistance;
+    private float nextTimeToFire = 0f;
+    private int maxIndex = 20;
+    private int currentIndex = 0;
 
-    [SerializeField] private float timeToShoot;
-
-    private List<ParticleSystem> particles = new List<ParticleSystem>();
+    private void Awake()
+    {
+        laserBeam = GetComponent<LaserBeam>();
+    }
 
     private void Start()
     {
-        FillList();
-        DisableLaser();
+        laserBeam.Init();
+
+        currentIndex = maxIndex;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            EnableLaser(); 
+        if (currentIndex <= 0) {
+            StartCoroutine(Reload(reloadDelay));
 
-        UpdateLaser();
-    }
-
-    private void EnableLaser()
-    {
-        particles.ForEach((ParticleSystem ps) => ps.Play());
-
-        lineRenderer.enabled = true;  
-    }
-
-    private void UpdateLaser()
-    {
-        lineRenderer.SetPosition(0, firePoint.position);
-        lineRenderer.SetPosition(1, laserDirection);
-
-        startVFX.transform.position = firePoint.position;
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, laserDirection, laserMaxDistance);
-
-        if (hit) {
-            lineRenderer.SetPosition(1, hit.point);
+            return;
         }
 
-        endVFX.transform.position = lineRenderer.GetPosition(1);
+        if (currentIndex >= 1) {
+            Shoot();
+        }
     }
 
-    private void DisableLaser()
+    private void Shoot()
     {
-        lineRenderer.enabled = false;
+        if (laserBeam.isDisabled)
+            laserBeam.EnableLaser();
 
-        particles.ForEach((ParticleSystem ps) => ps.Stop());
+        laserBeam.UpdateLaser();
+
+        if (Time.time >= nextTimeToFire) {
+            nextTimeToFire = Time.time + 1f / timeToOverheat;
+
+            currentIndex--;
+        }
     }
 
-    private void FillList()
+    private IEnumerator Reload(float time)
     {
-        for (int i = 0; i < startVFX.transform.childCount; i++) {
-            ParticleSystem ps = startVFX.transform.GetChild(i).GetComponent<ParticleSystem>();
+        if (!laserBeam.isDisabled)
+            laserBeam.DisableLaser();
 
-            if (ps != null)
-                particles.Add(ps);
-        }
-        
-        for (int i = 0; i < endVFX.transform.childCount; i++) {
-            ParticleSystem ps = endVFX.transform.GetChild(i).GetComponent<ParticleSystem>();
+        yield return new WaitForSeconds(time);
 
-            if (ps != null)
-                particles.Add(ps);
-        }
+        currentIndex = maxIndex;
     }
 }
