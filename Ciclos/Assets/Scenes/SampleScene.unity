@@ -2873,10 +2873,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pulser Shooter
       objectReference: {fileID: 0}
+    - target: {fileID: 4586552829994515738, guid: 4d592a658a1902341bfbf86e6883320f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4586552829994515739, guid: 4d592a658a1902341bfbf86e6883320f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.43
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 4586552829994515739, guid: 4d592a658a1902341bfbf86e6883320f,
         type: 3}
@@ -2926,6 +2931,11 @@ PrefabInstance:
     - target: {fileID: 4586552829994515739, guid: 4d592a658a1902341bfbf86e6883320f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586552829994515748, guid: 4d592a658a1902341bfbf86e6883320f,
+        type: 3}
+      propertyPath: shootWhenCollidedWithlayer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3245,6 +3255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Moving Pulser Shooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414047818436142244, guid: ae778f761d5ec6841ace8b6e8374fc00,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6414047818436142245, guid: ae778f761d5ec6841ace8b6e8374fc00,
         type: 3}

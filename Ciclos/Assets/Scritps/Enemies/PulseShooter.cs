@@ -50,6 +50,7 @@ public class PulseShooter : MonoBehaviour
             }
             else {
                 laserBeam.DisableLaser();
+
                 laserBeam.UpdateLaser(laserBeam.preciptationLineRenderer);
             }
         }
