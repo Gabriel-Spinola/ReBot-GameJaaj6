@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ParticleSystem wallJumpParticle;
     [SerializeField] private ParticleSystem slideParticle;
 
-    [SerializeField] private LayerMask whatIsSpikes = 0;
+    [SerializeField] private int whatIsSpikesLayerID = 0;
 
     [SerializeField] private Vector2 s;
     [SerializeField] private float f;
@@ -296,8 +296,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == whatIsSpikes) {
+        if (collision.gameObject.layer == whatIsSpikesLayerID) {
             TakeDamage();
+
+            Debug.Log("collided with spike");
         }
 
         if (collision.gameObject.CompareTag("Platform")) {
