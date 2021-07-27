@@ -8,8 +8,8 @@ public class LaserBeam : MonoBehaviour
     [SerializeField] private bool isDirectionStatic = true;
 
     [Header("Line Renderers")]
-    [SerializeField] private LineRenderer lineRenderer = null;
-    [SerializeField] private LineRenderer preciptationLineRenderer = null;
+    public LineRenderer lineRenderer = null;
+    public LineRenderer preciptationLineRenderer = null;
 
     [Header("Line Position Config")]
     [SerializeField] private Transform firePoint = null;
@@ -52,10 +52,10 @@ public class LaserBeam : MonoBehaviour
         isDisabled = false;
     }
 
-    public void UpdateLaser()
+    public void UpdateLaser(LineRenderer laser)
     {
-        lineRenderer.SetPosition(0, (Vector2) firePoint.position);
-        lineRenderer.SetPosition(1, isDirectionStatic ? laserDirection : (Vector2) direction.position);
+        laser.SetPosition(0, (Vector2) firePoint.position);
+        laser.SetPosition(1, isDirectionStatic ? laserDirection : (Vector2) direction.position);
 
         startVFX.transform.position = (Vector2) firePoint.position;
 
@@ -68,20 +68,17 @@ public class LaserBeam : MonoBehaviour
         if (hit) {
             this.hit = hit;
 
-            lineRenderer.SetPosition(1, hit.point);
+            laser.SetPosition(1, hit.point);
         }
 
-        endVFX.transform.position = (Vector2) lineRenderer.GetPosition(1);
+        endVFX.transform.position = (Vector2) laser.GetPosition(1);
     }
 
     public void DisableLaser()
     {
         particles.ForEach((ParticleSystem ps) => ps.Stop());
         preciptationParticles.ForEach((ParticleSystem ps) => ps.Play());
-
-        preciptationLineRenderer.SetPosition(0, (Vector2) lineRenderer.GetPosition(0));
-        preciptationLineRenderer.SetPosition(1, (Vector2) lineRenderer.GetPosition(1));
-
+        
         lineRenderer.enabled = false;
         preciptationLineRenderer.enabled = true;
         isDisabled = true;

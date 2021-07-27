@@ -16,22 +16,23 @@ public class PulseShooter : MonoBehaviour
     private float nextTimeToFire = 0f;
     private int currentIndex = 0;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         laserBeam = GetComponent<LaserBeam>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         laserBeam.Init();
 
         currentIndex = maxIndex;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (currentIndex <= 0) {
             StartCoroutine(Reload(reloadDelay));
+            laserBeam.UpdateLaser(laserBeam.preciptationLineRenderer);
 
             return;
         }
@@ -50,7 +51,7 @@ public class PulseShooter : MonoBehaviour
         if (laserBeam.isDisabled)
             laserBeam.EnableLaser();
 
-        laserBeam.UpdateLaser();
+        laserBeam.UpdateLaser(laserBeam.lineRenderer);
 
         if (Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f / timeToOverheat;
