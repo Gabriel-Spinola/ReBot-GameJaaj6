@@ -84,6 +84,16 @@ public class LaserBeam : MonoBehaviour
         isDisabled = true;
     }
 
+    public void StopParticle(int id)
+    {
+        if (id == 1) {
+            particles.ForEach((ParticleSystem ps) => ps.Stop());
+        }
+        else {
+            preciptationParticles.ForEach((ParticleSystem ps) => ps.Stop());
+        }
+    }
+
     private void FillList()
     {
         for (int i = 0; i < startVFX.transform.childCount; i++) {

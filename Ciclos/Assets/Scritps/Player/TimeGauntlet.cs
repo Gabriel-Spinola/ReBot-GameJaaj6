@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +13,16 @@ public class TimeGauntlet : MonoBehaviour
     [SerializeField] private bool isOnPast = false;
     public static bool IsOnPast = false;
 
+    public static bool usedGauntlet = false;
+
     private void Update()
     {
         IsOnPast = isOnPast;
+
+        usedGauntlet = inputManager.keyGauntlet;
     }
 
-    public void UseGauntlet()
+    public void UpdateGauntlet()
     {
         if (isOnPast && inputManager.keyGauntlet) {
             foreach (GameObject @object in present) {

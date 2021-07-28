@@ -36,6 +36,7 @@ public class PulseShooter : MonoBehaviour
         if (currentIndex <= 0) {
             StartCoroutine(Reload(reloadDelay));
             laserBeam.UpdateLaser(laserBeam.preciptationLineRenderer);
+            laserBeam.StopParticle(1);
 
             return;
         }
@@ -52,6 +53,7 @@ public class PulseShooter : MonoBehaviour
                 laserBeam.DisableLaser();
 
                 laserBeam.UpdateLaser(laserBeam.preciptationLineRenderer);
+                laserBeam.StopParticle(1);
             }
         }
         else {
@@ -62,6 +64,10 @@ public class PulseShooter : MonoBehaviour
 
         if (laserBeam.hit.collider.CompareTag("Player")) {
             laserBeam.hit.collider.gameObject.GetComponent<Player>().TakeDamage();
+        }
+
+        if (TimeGauntlet.usedGauntlet) {
+            ResetValues();
         }
     }
 
@@ -89,5 +95,13 @@ public class PulseShooter : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         currentIndex = maxIndex;
+    }
+
+    protected virtual void ResetValues()
+    {
+        nextTimeToFire = 0;
+        currentIndex = 0;
+        startShooting = false;
+        laserBeam.DisableLaser();
     }
 }

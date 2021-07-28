@@ -238,7 +238,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -24461,6 +24461,7 @@ MonoBehaviour:
   timeToOverheat: 20
   reloadDelay: 3
   shootWhenCollidedWithlayer: 1
+  isVerticalMovement: 0
   groundCheck: {fileID: 6414047817469847030}
   whatIsBlock:
     serializedVersion: 2

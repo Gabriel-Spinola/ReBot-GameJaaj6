@@ -10,7 +10,7 @@ public class PlayerInteract : MonoBehaviour
     private void Update()
     {
         if (canUseGauntlet)
-            timeGauntlet.UseGauntlet();
+            timeGauntlet.UpdateGauntlet();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
