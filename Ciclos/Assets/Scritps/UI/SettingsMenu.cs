@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // https://youtu.be/EA-tBcTxE8M
 public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private Slider[] volumeSliders;
     [SerializeField] private Toggle[] resolutionToggles;
+    [SerializeField] private TMP_Dropdown qualityDropdown;
 
     [SerializeField] private int[] screenWidths;
 
@@ -26,6 +28,11 @@ public class SettingsMenu : MonoBehaviour
         }
 
         SetFullscreen(isFullscren);
+    }
+
+    private void Update()
+    {
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
     }
 
     public void SetScreenResolution(int index)
@@ -61,6 +68,8 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("fullscreen", isFullscreen ? 1 : 0);
         PlayerPrefs.Save();
     }
+
+    public void SetQuality(int qualityIndex) => QualitySettings.SetQualityLevel(qualityIndex);
 
     public void SetMasterVolume(float volume) => AudioManager._I.SetVolume(volume, AudioManager.AudioChannel.Master);
 
