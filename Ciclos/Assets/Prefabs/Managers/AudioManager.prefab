@@ -57,7 +57,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ffac78396c5f443999e5fdbeb9b84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneThemes: []
+  sceneThemes:
+  - name: MainMenu
+    theme: {fileID: 8300000, guid: 5fe33863c93b10940a13650cdbdf1048, type: 3}
+    fadeDuration: 2
+    pitch: 1
+  - name: BuildTest
+    theme: {fileID: 8300000, guid: 5fe33863c93b10940a13650cdbdf1048, type: 3}
+    fadeDuration: 2
+    pitch: 1
 --- !u!114 &3240425907172566812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,4 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac25a62aee124fb4e87b2e5f36f34b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroups: []
+  soundGroups:
+  - groupID: Walk
+    group:
+    - {fileID: 8300000, guid: f0c305560e91dff4980903cdcef2e139, type: 3}
+    - {fileID: 8300000, guid: 7e69d246610d51d479a1e826ca01c954, type: 3}
+    - {fileID: 8300000, guid: 377443f6c67b778459a5593201c8ce5d, type: 3}
+    - {fileID: 8300000, guid: ba8bd9a410a75bb48b8b83b87eaed301, type: 3}

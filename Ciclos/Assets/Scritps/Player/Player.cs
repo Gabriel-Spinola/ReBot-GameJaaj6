@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(PlayerGraphics))]
 [RequireComponent(typeof(Rigidbody2D), typeof(Collision))]
 public class Player : MonoBehaviour
 {
@@ -97,7 +98,7 @@ public class Player : MonoBehaviour
             if (canJump > 0) {
                 Jump(jumpForce);
             }
-            
+
             if (!col.isGrounded && col.isOnWall) {
                 WallJump();
             }
