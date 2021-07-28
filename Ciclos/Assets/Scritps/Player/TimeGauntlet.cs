@@ -9,7 +9,13 @@ public class TimeGauntlet : MonoBehaviour
 
     [SerializeField] private InputManager inputManager;
 
-    public static bool isOnPast = false;
+    [SerializeField] private bool isOnPast = false;
+    public static bool IsOnPast = false;
+
+    private void Update()
+    {
+        IsOnPast = isOnPast;
+    }
 
     public void UseGauntlet()
     {

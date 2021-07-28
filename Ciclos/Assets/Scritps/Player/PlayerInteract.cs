@@ -15,14 +15,21 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Key")) {
-            other.gameObject.GetComponent<Keys>().OpenDoor();
-        }
+        switch (other.tag) {
+            case "Key":
+                other.gameObject.GetComponent<Keys>().OpenDoor();
+            break;
 
-        if (other.CompareTag("KeyGauntlet")) {
-            Destroy(other.gameObject);
+            case "KeyGauntlet":
+                Destroy(other.gameObject);
 
-            canUseGauntlet = true;
+                canUseGauntlet = true;
+            break;
+
+            case "NextScene":
+                LevelsManager.GoToNextLevel();
+                LevelsManager.CurrentLevel++;
+            break;
         }
     }
 }

@@ -40,8 +40,10 @@ public class Room : MonoBehaviour
 
             virtualCamera.SetActive(false);
 
-            StartCoroutine(roomManager.player.DisablePlayer(.4f));
-            StartCoroutine(roomManager.player.playerGraphics.DisableAnimation(.4f));
+            if (roomManager.player != null && gameObject.activeInHierarchy) {
+                StartCoroutine(roomManager.player.DisablePlayer(.4f));
+                StartCoroutine(roomManager.player.playerGraphics.DisableAnimation(.4f));
+            }
         }
     }
 }

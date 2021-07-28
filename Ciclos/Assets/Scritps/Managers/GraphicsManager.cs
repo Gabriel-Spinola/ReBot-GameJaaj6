@@ -5,7 +5,6 @@ using UnityEngine;
 public class GraphicsManager : MonoBehaviour
 {
     public static GraphicsManager I;
-    public static int currentLevel = 1;
     public static int qualityLevel = 1;
 
     public GameObject[] volumeQualities;
