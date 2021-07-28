@@ -297,6 +297,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage() => Die();
 
+    public Rigidbody2D GetRigidbody() => rb;
     public void SetUseBetterJump(bool val) => useBetterJump = val;
 
     private void OnCollisionEnter2D(Collision2D collision)

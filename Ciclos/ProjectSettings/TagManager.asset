@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Moving Platform
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -60,4 +61,7 @@ TagManager:
     locked: 0
   - name: Outground
     uniqueID: 4240530525
+    locked: 0
+  - name: UI
+    uniqueID: 2398367239
     locked: 0

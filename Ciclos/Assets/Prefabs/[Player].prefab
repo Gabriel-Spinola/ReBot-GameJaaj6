@@ -9726,6 +9726,7 @@ GameObject:
   - component: {fileID: 3853796428459669532}
   - component: {fileID: 4582752689782278710}
   - component: {fileID: 1809984952073425310}
+  - component: {fileID: 6471966832503736120}
   - component: {fileID: 5915052774455979100}
   m_Layer: 9
   m_Name: '[Player]'
@@ -9825,11 +9826,23 @@ MonoBehaviour:
   lowJumpMultiplier: 4
   wallJumpHeight: 14.5
   wallJumpSpeed: 14
-  slideSpeed: 1
+  slideSpeed: 1.5
   slideDelay: 0.1
   playerGraphics: {fileID: 0}
   canMove: 1
   wallSlide: 0
+--- !u!114 &6471966832503736120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4694011908225834811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4cf282e77b8024e9fd2b308eb79b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5915052774455979100
 MonoBehaviour:
   m_ObjectHideFlags: 0
