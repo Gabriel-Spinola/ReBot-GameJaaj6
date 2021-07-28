@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -599,7 +599,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetScreenResolution
         m_Mode: 3
         m_Arguments:
@@ -635,18 +635,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81267386}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 529000208}
   - {fileID: 1874390210}
-  m_Father: {fileID: 1853319034}
-  m_RootOrder: 2
+  m_Father: {fileID: 1035799250}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 285, y: -130.99991}
+  m_AnchoredPosition: {x: 224, y: 112}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81267388
@@ -695,7 +695,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetFullscreen
         m_Mode: 0
         m_Arguments:
@@ -706,7 +706,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &113599444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +1020,7 @@ RectTransform:
   - {fileID: 1400158987}
   - {fileID: 1325904539}
   m_Father: {fileID: 1853319034}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetQuality
         m_Mode: 0
         m_Arguments:
@@ -1846,6 +1846,7 @@ GameObject:
   - component: {fileID: 594788441}
   - component: {fileID: 594788440}
   - component: {fileID: 594788439}
+  - component: {fileID: 594788442}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1934,6 +1935,28 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &594788442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594788437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc1c05bfddcaed4894faf6b76202f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSliders:
+  - {fileID: 1159269569}
+  - {fileID: 856906090}
+  - {fileID: 821931676}
+  resolutionToggles:
+  - {fileID: 615498463}
+  - {fileID: 1848516673}
+  - {fileID: 80801015}
+  qualityDropdown: {fileID: 271452090}
+  screenWidths: c00300000005000080070000
 --- !u!1 &615498461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,7 +2041,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetScreenResolution
         m_Mode: 3
         m_Arguments:
@@ -2466,7 +2489,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetSFXVolume
         m_Mode: 0
         m_Arguments:
@@ -2641,7 +2664,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -2844,7 +2867,7 @@ RectTransform:
   m_Children:
   - {fileID: 1309728639}
   m_Father: {fileID: 1853319034}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3437,6 +3460,7 @@ RectTransform:
   - {fileID: 532709951}
   - {fileID: 1896616846}
   - {fileID: 1089990295}
+  - {fileID: 81267387}
   m_Father: {fileID: 594788438}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3765,7 +3789,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetMasterVolume
         m_Mode: 0
         m_Arguments:
@@ -5318,7 +5342,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853319035}
+      - m_Target: {fileID: 594788442}
         m_MethodName: SetScreenResolution
         m_Mode: 3
         m_Arguments:
@@ -5339,7 +5363,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1853319034}
-  - component: {fileID: 1853319035}
   m_Layer: 5
   m_Name: '[Settings Menu]'
   m_TagString: Untagged
@@ -5360,7 +5383,6 @@ RectTransform:
   m_Children:
   - {fileID: 1274103577}
   - {fileID: 1096848456}
-  - {fileID: 81267387}
   - {fileID: 271452089}
   - {fileID: 939945444}
   m_Father: {fileID: 594788438}
@@ -5371,28 +5393,6 @@ RectTransform:
   m_AnchoredPosition: {x: -270, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1853319035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853319033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc1c05bfddcaed4894faf6b76202f83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeSliders:
-  - {fileID: 1159269569}
-  - {fileID: 856906090}
-  - {fileID: 821931676}
-  resolutionToggles:
-  - {fileID: 615498463}
-  - {fileID: 1848516673}
-  - {fileID: 80801015}
-  qualityDropdown: {fileID: 271452090}
-  screenWidths: c00300000005000080070000
 --- !u!1 &1856898981
 GameObject:
   m_ObjectHideFlags: 0

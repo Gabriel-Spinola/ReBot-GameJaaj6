@@ -7,6 +7,7 @@ public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private Slider[] volumeSliders;
     [SerializeField] private Toggle[] resolutionToggles;
+    [SerializeField] private Toggle fullscreenToggle;
     [SerializeField] private TMP_Dropdown qualityDropdown;
 
     [SerializeField] private int[] screenWidths;
@@ -28,6 +29,11 @@ public class SettingsMenu : MonoBehaviour
         }
 
         SetFullscreen(isFullscren);
+
+        if (Screen.fullScreen) {
+            SetFullscreen(true);
+            fullscreenToggle.isOn = true;
+        }
     }
 
     private void Update()
