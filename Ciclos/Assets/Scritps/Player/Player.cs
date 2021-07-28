@@ -169,6 +169,8 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         particle.Play();
+        AudioManager._I.PlaySound2D("Jump");
+
         canJump = 0;
 
         StartCoroutine(DisableJump(.2f));
@@ -184,6 +186,8 @@ public class Player : MonoBehaviour
         rb.velocity = jumpDir;
 
         particle.Play();
+        AudioManager._I.PlaySound2D("Jump");
+
         canJump = 0;
     }
 

@@ -11,7 +11,7 @@ public class TimeGauntlet : MonoBehaviour
 
     public static bool isOnPast = false;
 
-    private void Update()
+    public void UseGauntlet()
     {
         if (isOnPast && inputManager.keyGauntlet) {
             foreach (GameObject @object in present) {

@@ -41,7 +41,7 @@ public class PlayerGraphics : MonoBehaviour
         anim.SetBool("WallSlide", player.wallSlide);
     }
 
-    public void PlayWalkSound() => AudioManager._I.PlaySound2D("Walk");
+    public void PlayWalkSound() => AudioManager._I.PlaySound2D("Walk", 1.2f);
 
     public void SetMovement(float yVel)
     {

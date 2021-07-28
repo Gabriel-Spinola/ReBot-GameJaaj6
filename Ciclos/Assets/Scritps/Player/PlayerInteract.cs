@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D other)
+    [SerializeField] private TimeGauntlet timeGauntlet;
+    [SerializeField] private bool canUseGauntlet = false;
+
+    private void Update()
     {
-        if (other.collider.CompareTag("Key")) {
+        if (canUseGauntlet)
+            timeGauntlet.UseGauntlet();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Key")) {
             other.gameObject.GetComponent<Keys>().OpenDoor();
+        }
+
+        if (other.CompareTag("KeyGauntlet")) {
+            Destroy(other.gameObject);
+
+            canUseGauntlet = true;
         }
     }
 }

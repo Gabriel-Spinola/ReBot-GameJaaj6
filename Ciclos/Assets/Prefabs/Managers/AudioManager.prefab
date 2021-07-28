@@ -85,3 +85,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 7e69d246610d51d479a1e826ca01c954, type: 3}
     - {fileID: 8300000, guid: 377443f6c67b778459a5593201c8ce5d, type: 3}
     - {fileID: 8300000, guid: ba8bd9a410a75bb48b8b83b87eaed301, type: 3}
+  - groupID: Jump
+    group:
+    - {fileID: 8300000, guid: bdb5f6a61db11784292a3679f9fbaefd, type: 3}
+    - {fileID: 8300000, guid: b8bd3935a312bdc46aa136903a4a1910, type: 3}
