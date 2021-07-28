@@ -31,8 +31,6 @@ public class GraphicsManager : MonoBehaviour
 
     private void VolumeQualityLevel()
     {
-        Debug.Log(QualitySettings.GetQualityLevel());
-
         switch (QualitySettings.GetQualityLevel()) {
             case 0:
                 ResetVolumeSettings();
