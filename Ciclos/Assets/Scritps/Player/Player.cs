@@ -85,8 +85,8 @@ public class Player : MonoBehaviour
 
         canJump--;
 
-        if (col.isGroundedEarly) {
-            canJump = 20;
+        if (col.isGrounded) {
+            canJump = 8;
         }
 
         if (col.isGrounded) {
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
 
         canJump = 0;
 
-        StartCoroutine(DisableJump(.2f));
+        StartCoroutine(DisableJump(.4f));
     }
 
     public void Jump(Vector2 jumpDir)
@@ -189,6 +189,7 @@ public class Player : MonoBehaviour
         AudioManager._I.PlaySound2D("Jump");
 
         canJump = 0;
+        StartCoroutine(DisableJump(.4f));
     }
 
     private void WallJump()

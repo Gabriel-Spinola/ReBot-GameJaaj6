@@ -32,7 +32,6 @@ public class Carlos : Enemy
     {
         if (shouldAim && !Physics2D.Linecast(transform.position, player.position, whatIsWall)) {
             lookDir = StaticRes.LookDir(transform.position, player.position);
-
             transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, lookDir));
 
             if (Time.time >= nextTimeToFire) {
