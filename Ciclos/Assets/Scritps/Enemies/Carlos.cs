@@ -9,6 +9,8 @@ public class Carlos : Enemy
     [SerializeField] private Transform player;
     [SerializeField] private Transform shootPoint;
 
+    [SerializeField] private LayerMask whatIsWall;
+
     [Header("Carlos Stats")]
     [SerializeField] private bool shouldAim = false;
     [SerializeField] private float fireRate = 1f;
@@ -28,15 +30,16 @@ public class Carlos : Enemy
 
     private void Update()
     {
-        if (shouldAim) {
+        if (shouldAim && !Physics2D.Linecast(transform.position, player.position, whatIsWall)) {
             lookDir = StaticRes.LookDir(transform.position, player.position);
+
             transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, lookDir));
-        }
 
-        if (Time.time >= nextTimeToFire) {
-            nextTimeToFire = Time.time + 1f / fireRate;
+            if (Time.time >= nextTimeToFire) {
+                nextTimeToFire = Time.time + 1f / fireRate;
 
-            Shoot();   
+                Shoot();
+            }
         }
     }
 
