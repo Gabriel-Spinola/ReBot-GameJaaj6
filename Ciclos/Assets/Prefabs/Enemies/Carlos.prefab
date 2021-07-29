@@ -150,6 +150,10 @@ MonoBehaviour:
   health: 1
   bullet: {fileID: 7616858314163952191, guid: 90946105784fac048a6c6434f232ce91, type: 3}
   player: {fileID: 0}
+  shootPoint: {fileID: 545869666419558242}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
   shouldAim: 0
   fireRate: 1
   damage: 1

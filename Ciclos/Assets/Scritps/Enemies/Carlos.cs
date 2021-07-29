@@ -40,6 +40,13 @@ public class Carlos : Enemy
                 Shoot();
             }
         }
+        else {
+            if (Time.time >= nextTimeToFire) {
+                nextTimeToFire = Time.time + 1f / fireRate;
+
+                Shoot();
+            }
+        }
     }
 
     private void Shoot()

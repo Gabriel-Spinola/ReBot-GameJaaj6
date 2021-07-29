@@ -14,8 +14,11 @@ public class RoomManager : MonoBehaviour
 
     private void Awake()
     {
-        PastTemporaryObjects = GameObject.Find("[PastTemporaryObjects]").transform;
-        PresentTemporaryObjects = GameObject.Find("[PresentTemporaryObjects]").transform;
+        if (GameObject.Find("[PastTemporaryObjects]"))
+            PastTemporaryObjects = GameObject.Find("[PastTemporaryObjects]").transform;
+
+        if (GameObject.Find("[PresentTemporaryObjects]"))
+            PresentTemporaryObjects = GameObject.Find("[PresentTemporaryObjects]").transform;
     }
 
     private void Update()
