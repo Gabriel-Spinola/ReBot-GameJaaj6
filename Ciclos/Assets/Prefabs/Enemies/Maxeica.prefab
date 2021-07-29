@@ -161,7 +161,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: da3a5d3c8236fab4a913489cb155b161, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &3237672283555926452
 MonoBehaviour:
@@ -209,4 +209,7 @@ MonoBehaviour:
   isOnRightWall: 0
   isOnLeftWall: 0
   isOnWall: 0
+  isGroundedEarly: 0
+  bottomColYSize: 0
+  wallSide: 0
   isGrounded: 1

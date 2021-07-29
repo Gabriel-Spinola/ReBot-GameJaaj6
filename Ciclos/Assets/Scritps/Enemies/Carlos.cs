@@ -17,16 +17,12 @@ public class Carlos : Enemy
     [SerializeField] private float damage = 1f;
     [SerializeField] private float bulletSpeed = 2f;
 
+    [SerializeField] private Animator anim = null;
+    [SerializeField] private Animator scaleAnim = null;
+
     private float lookDir = 0f;
 
     private float nextTimeToFire = 0f;
-
-    private void Awake()
-    {
-        if (shouldAim) {
-
-        }
-    }
 
     private void Update()
     {
@@ -57,6 +53,12 @@ public class Carlos : Enemy
         currentBullet.speed = bulletSpeed;
         currentBullet.dir = new Vector2((int) transform.localScale.x, 0f);
         currentBullet.xScale = (int) transform.localScale.x;
+
+        if (anim != null) {
+            anim.SetTrigger("Shoot");
+        }
+
+        scaleAnim.SetTrigger("Squash");
 
         if (transform.parent.parent.name == "--- Present ---") {
             currentBullet.transform.parent = RoomManager.PresentTemporaryObjects;

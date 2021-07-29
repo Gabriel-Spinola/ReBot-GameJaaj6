@@ -66,8 +66,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerDisabled)
+        if (isPlayerDisabled) {
             return;
+        }
 
         if (IsCrushed()) {
             Die();

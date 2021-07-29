@@ -21,7 +21,7 @@ QualitySettings:
     skinWeights: 2
     textureQuality: 0
     anisotropicTextures: 0
-    antiAliasing: 0
+    antiAliasing: 8
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
@@ -40,7 +40,8 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 5987221db64762541aeb8fa02e7a1376,
+      type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Medium
@@ -76,7 +77,8 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 5987221db64762541aeb8fa02e7a1376,
+      type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: High

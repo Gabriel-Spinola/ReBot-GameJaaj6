@@ -9,6 +9,7 @@ TagManager:
   - Key
   - KeyGauntlet
   - NextScene
+  - Explosion
   layers:
   - Default
   - TransparentFX

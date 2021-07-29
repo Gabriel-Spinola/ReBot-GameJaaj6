@@ -38,6 +38,7 @@ public class PlayerInteract : MonoBehaviour
         
         player.GetRigidbody().gravityScale = 0f;
         player.GetRigidbody().velocity = Vector2.zero;
+        GetComponent<Collider2D>().isTrigger = true;
 
         yield return new WaitForSeconds(time);
 
@@ -46,6 +47,7 @@ public class PlayerInteract : MonoBehaviour
         player.GetRigidbody().gravityScale = 2f;
         player.playerGraphics.SetUsingGauntlet(false);
         timeGauntlet.UpdateGauntlet();
+        GetComponent<Collider2D>().isTrigger = false;
     }
 
     private IEnumerator DisableGauntlet(float time)
@@ -64,16 +66,22 @@ public class PlayerInteract : MonoBehaviour
                 other.gameObject.GetComponent<Keys>().OpenDoor();
             break;
 
-            case "KeyGauntlet":
-                Destroy(other.gameObject);
-
-                canUseGauntlet = true;
-            break;
-
             case "NextScene":
                 LevelsManager.GoToNextLevel();
                 LevelsManager.CurrentLevel++;
             break;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("KeyGauntlet")) {
+            if (player.InputManager.keyUse) {
+                Destroy(other.gameObject);
+            
+
+                canUseGauntlet = true;
+            }
         }
     }
 }
