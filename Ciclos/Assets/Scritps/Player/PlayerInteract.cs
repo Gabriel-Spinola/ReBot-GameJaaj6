@@ -21,6 +21,9 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
+        if (DialoguesManager.IsOnADialogue)
+            return;
+
         if (canUseGauntlet && player.InputManager.keyGauntlet) {
             StartCoroutine(StartTimeTravel(gauntletDelay));
             StartCoroutine(player.DisablePlayer(gauntletDelay));
@@ -70,6 +73,10 @@ public class PlayerInteract : MonoBehaviour
                 LevelsManager.GoToNextLevel();
                 LevelsManager.CurrentLevel++;
             break;
+
+            case "DialogueTrigger":
+                other.GetComponent<DialogueTrigger>().TriggerDialogue();
+            break;
         }
     }
 
@@ -79,7 +86,6 @@ public class PlayerInteract : MonoBehaviour
             if (player.InputManager.keyUse) {
                 Destroy(other.gameObject);
             
-
                 canUseGauntlet = true;
             }
         }

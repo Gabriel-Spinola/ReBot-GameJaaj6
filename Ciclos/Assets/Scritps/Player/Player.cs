@@ -66,6 +66,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (DialoguesManager.IsOnADialogue) {
+            rb.velocity = Vector2.zero;
+
+            return;
+        }
+
         if (isPlayerDisabled) {
             return;
         }

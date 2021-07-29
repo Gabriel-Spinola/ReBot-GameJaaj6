@@ -6,6 +6,8 @@ using System.Collections;
 // https://youtu.be/_nRzoTzeyxU
 public class DialoguesManager : MonoBehaviour
 {
+    public static bool IsOnADialogue = false;
+
     [SerializeField] private TMP_Text nameTxt;
     [SerializeField] private TMP_Text dialogueTxt;
 
@@ -20,6 +22,8 @@ public class DialoguesManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        IsOnADialogue = true;
+
         anim.SetBool("IsOpen", true);
         nameTxt.SetText(dialogue.name);
         sentences.Clear();
@@ -58,6 +62,8 @@ public class DialoguesManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        IsOnADialogue = false;
+
         anim.SetBool("IsOpen", false);
     }
 }

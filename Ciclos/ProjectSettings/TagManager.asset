@@ -10,6 +10,7 @@ TagManager:
   - KeyGauntlet
   - NextScene
   - Explosion
+  - DialogueTrigger
   layers:
   - Default
   - TransparentFX
