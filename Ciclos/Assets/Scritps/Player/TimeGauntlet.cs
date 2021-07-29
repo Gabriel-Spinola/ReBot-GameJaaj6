@@ -24,7 +24,7 @@ public class TimeGauntlet : MonoBehaviour
 
     public void UpdateGauntlet()
     {
-        if (isOnPast && inputManager.keyGauntlet) {
+        if (isOnPast) {
             foreach (GameObject @object in present) {
                 if (@object is null)
                     break;
@@ -41,7 +41,7 @@ public class TimeGauntlet : MonoBehaviour
 
             isOnPast = false;
         }
-        else if (inputManager.keyGauntlet) {
+        else {
             foreach (GameObject @object in present) {
                 if (@object is null)
                     break;

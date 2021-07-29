@@ -66,6 +66,8 @@ public class PlayerGraphics : MonoBehaviour
         }
     }
 
+    public void SetUsingGauntlet(bool val) => anim.SetBool("UsingGauntlet", val);
+
     public void Flip(int side)
     {
         if (disableAnimation)
