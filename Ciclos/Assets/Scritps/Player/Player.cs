@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
 
         canJump = 0;
 
-        StartCoroutine(DisableJump(.4f));
+        StartCoroutine(DisableJump(.3f));
     }
 
     public void Jump(Vector2 jumpDir)
@@ -196,7 +196,7 @@ public class Player : MonoBehaviour
         AudioManager._I.PlaySound2D("Jump");
 
         canJump = 0;
-        StartCoroutine(DisableJump(.4f));
+        StartCoroutine(DisableJump(.3f));
     }
 
     private void WallJump()

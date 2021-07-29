@@ -26,6 +26,12 @@ public class PlayerGraphics : MonoBehaviour
 
     private void Update()
     {
+        if (DialoguesManager.IsOnADialogue) {
+            ResetAnimation();
+
+            return;
+        }
+
         if (disableAnimation)
             return;
         

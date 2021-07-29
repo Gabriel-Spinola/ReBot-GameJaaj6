@@ -56,7 +56,7 @@ public class DialoguesManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray()) {
             dialogueTxt.text += letter;
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
     }
 
