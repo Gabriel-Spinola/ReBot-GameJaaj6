@@ -50,5 +50,12 @@ public class Carlos : Enemy
         currentBullet.speed = bulletSpeed;
         currentBullet.dir = new Vector2((int) transform.localScale.x, 0f);
         currentBullet.xScale = (int) transform.localScale.x;
+
+        if (transform.parent.parent.name == "--- Present ---") {
+            currentBullet.transform.parent = RoomManager.PresentTemporaryObjects;
+        }
+        else if (transform.parent.parent.name == "--- Past ---") {
+            currentBullet.transform.parent = RoomManager.PastTemporaryObjects;
+        }
     }
 }

@@ -5,10 +5,18 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public static double CurrentRoom = 1;
+    public static Transform PastTemporaryObjects;
+    public static Transform PresentTemporaryObjects;
 
     [HideInInspector] public Player player = null;
 
     private Vector3 spawnPosition = Vector3.zero;
+
+    private void Awake()
+    {
+        PastTemporaryObjects = GameObject.Find("[PastTemporaryObjects]").transform;
+        PresentTemporaryObjects = GameObject.Find("[PresentTemporaryObjects]").transform;
+    }
 
     private void Update()
     {

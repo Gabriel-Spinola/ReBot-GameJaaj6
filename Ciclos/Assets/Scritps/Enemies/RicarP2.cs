@@ -43,5 +43,12 @@ public class RicarP2 : EnemyPatrol
             y: currentBullet.transform.rotation.y,
             z: 90f
         );
+
+        if (transform.parent.parent.name == "--- Present ---") {
+            currentBullet.transform.parent = RoomManager.PresentTemporaryObjects;
+        }
+        else if (transform.parent.parent.name == "--- Past ---") {
+            currentBullet.transform.parent = RoomManager.PastTemporaryObjects;
+        }
     }
 }

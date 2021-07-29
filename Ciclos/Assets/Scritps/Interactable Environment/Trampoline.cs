@@ -16,7 +16,13 @@ public class Trampoline : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void DeactivateAnim() => animator.SetBool("IsActive", false); 
+    public void DeactivateAnim() => animator.SetBool("IsActive", false);
+
+    private void OnDisable()
+    {
+        DeactivateAnim();
+        animator.SetTrigger("Deactivate");
+    }
 
     private IEnumerator WaitToStart(float time, Player player)
     {
