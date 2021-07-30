@@ -131,6 +131,7 @@ MonoBehaviour:
     m_Bits: 512
   kockbackForce: 25
   r: 0.7
+  timeToActivate: 0.1
 --- !u!95 &8141860578159467406
 Animator:
   serializedVersion: 3
