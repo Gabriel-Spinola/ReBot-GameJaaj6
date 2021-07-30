@@ -4,7 +4,8 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
-        LevelsManager.GoToLevel(LevelsManager.CurrentLevel); ;
+        LevelsManager.GoToLevel(LevelsManager.CurrentLevel);
+        RoomManager.RespawnMenu = true;
 
         if (PauseMenu.isGamePaused) {
             PauseMenu.isGamePaused = false;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public static double CurrentRoom = 1;
+    public static bool RespawnMenu = false;
     public static Transform PastTemporaryObjects;
     public static Transform PresentTemporaryObjects;
 
@@ -33,6 +34,12 @@ public class RoomManager : MonoBehaviour
             Respawn();
         }
 #endif
+
+        if (RespawnMenu) {
+            Respawn();
+
+            RespawnMenu = false;
+        }
     }
 
     public void Respawn()

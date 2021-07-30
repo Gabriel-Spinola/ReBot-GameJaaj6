@@ -19,8 +19,6 @@ public class GraphicsManager : MonoBehaviour
 
             return;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
@@ -34,17 +32,17 @@ public class GraphicsManager : MonoBehaviour
             case 0:
                 ResetVolumeSettings();
                 volumeQualities[0].SetActive(true);
-                break;
+            break;
 
             case 1:
                 ResetVolumeSettings();
                 volumeQualities[1].SetActive(true);
-                break;
+            break;
 
             case 2:
                 ResetVolumeSettings();
                 volumeQualities[2].SetActive(true);
-                break;
+            break;
         }
     }
 

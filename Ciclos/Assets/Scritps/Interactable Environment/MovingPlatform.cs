@@ -20,7 +20,7 @@ public class MovingPlatform : MonoBehaviour
         nextPos = startPos.position;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!canMove)
             return;

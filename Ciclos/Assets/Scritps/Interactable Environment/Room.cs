@@ -36,7 +36,7 @@ public class Room : MonoBehaviour
             if (lockAfterExit)
                 GetComponent<Collider2D>().isTrigger = false;
             if (verticalTransition)
-                roomManager.player.Jump(25f);
+                roomManager.player.Jump(12f);
 
             virtualCamera.SetActive(false);
 
