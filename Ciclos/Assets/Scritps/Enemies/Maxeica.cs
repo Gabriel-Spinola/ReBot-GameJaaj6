@@ -8,9 +8,19 @@ public class Maxeica : EnemyPatrol
     [SerializeField] private float jumpHeight = 8f;
     [SerializeField] private float disableFlipTimer = .5f;
 
+    private Animator anim = null;
+
     private Vector2 groundCheckerInitialPos = Vector2.zero;
 
+    private bool canJump = true;
     private bool canFlip;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        anim = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -35,8 +45,18 @@ public class Maxeica : EnemyPatrol
         rb.velocity = Vector2.right * walkSpeed * Time.fixedDeltaTime + Vector2.up * rb.velocity.y;
 
         if (col.isGrounded) {
-            rb.velocity = Vector2.right * rb.velocity.x + Vector2.up * jumpHeight * Time.fixedDeltaTime;
+            anim.SetBool("IsJumping", false);
         }
+    }
+
+    public void Jump()
+    {
+        if (!canJump)
+            return;
+
+        rb.velocity = Vector2.right * rb.velocity.x + Vector2.up * jumpHeight * Time.fixedDeltaTime;
+        anim.SetBool("IsJumping", true);
+        StartCoroutine(DisableJump(.35f));
     }
 
     private IEnumerator DisableFlip(float time)
@@ -46,6 +66,15 @@ public class Maxeica : EnemyPatrol
         yield return new WaitForSeconds(time);
 
         canFlip = true;
+    }
+    
+    private IEnumerator DisableJump(float time)
+    {
+        canJump = false;
+
+        yield return new WaitForSeconds(time);
+
+        canJump = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
