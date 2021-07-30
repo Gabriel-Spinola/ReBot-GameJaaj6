@@ -8,6 +8,7 @@ public class Carlos : Enemy
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform player;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private ParticleSystem shootParticle;
 
     [SerializeField] private LayerMask whatIsWall;
 
@@ -34,6 +35,7 @@ public class Carlos : Enemy
                 nextTimeToFire = Time.time + 1f / fireRate;
 
                 Shoot();
+                shootParticle.Play();
             }
         }
         else {
@@ -41,6 +43,7 @@ public class Carlos : Enemy
                 nextTimeToFire = Time.time + 1f / fireRate;
 
                 Shoot();
+                shootParticle.Play();
             }
         }
     }
