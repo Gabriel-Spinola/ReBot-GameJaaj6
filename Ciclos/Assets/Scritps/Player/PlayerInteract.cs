@@ -69,6 +69,19 @@ public class PlayerInteract : MonoBehaviour
             case "DialogueTrigger":
                 other.GetComponent<DialogueTrigger>().TriggerDialogue();
             break;
+
+            case "Roger":
+                if (player.InputManager.keyUse) {
+                    other.GetComponent<Roger>().Trigger();
+                }
+            break;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Roger") && player.InputManager.keyUse) {
+            other.GetComponent<Roger>().Trigger();
         }
     }
 }

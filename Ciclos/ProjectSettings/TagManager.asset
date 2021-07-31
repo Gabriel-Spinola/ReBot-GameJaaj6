@@ -13,6 +13,7 @@ TagManager:
   - DialogueTrigger
   - Global Light
   - Bullet
+  - Roger
   layers:
   - Default
   - TransparentFX
@@ -64,6 +65,9 @@ TagManager:
     locked: 0
   - name: In Particles
     uniqueID: 1379092971
+    locked: 0
+  - name: Roger
+    uniqueID: 2439958277
     locked: 0
   - name: Entities
     uniqueID: 1036490751
