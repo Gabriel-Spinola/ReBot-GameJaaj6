@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private TimeGauntlet timeGauntlet;
+    [SerializeField] private LevelManager levelManager;
 
     [SerializeField] private float gauntletCooldown = 1f;
     [SerializeField] private float gauntletDelay = .6f;
@@ -70,8 +71,8 @@ public class PlayerInteract : MonoBehaviour
             break;
 
             case "NextScene":
-                LevelsManager.GoToNextLevel();
-                LevelsManager.CurrentLevel++;
+                levelManager.GoToNextLevel();
+                LevelManager.CurrentLevel++;
             break;
 
             case "DialogueTrigger":

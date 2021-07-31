@@ -9918,6 +9918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeGauntlet: {fileID: 0}
+  levelManager: {fileID: 0}
   gauntletCooldown: 5
   gauntletDelay: 0.6
   canUseGauntlet: 0
@@ -9973,7 +9974,7 @@ MonoBehaviour:
   - {x: -0.40499878, y: 0.16363716, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -567812
+  m_InstanceId: -1004364
 --- !u!1 &5762709554061517290
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,9 +2,11 @@
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private LevelManager levelManager = null;
+
     public void Play()
     {
-        LevelsManager.GoToLevel(LevelsManager.CurrentLevel);
+        levelManager.GoToLevel(LevelManager.CurrentLevel);
         RoomManager.RespawnMenu = true;
 
         if (PauseMenu.isGamePaused) {
