@@ -38,15 +38,11 @@ public class GraphicsManager : MonoBehaviour
             case 1:
                 ResetVolumeSettings();
                 volumeQualities[1].SetActive(true);
-
-                DestroyLights();
             break;
 
             case 2:
                 ResetVolumeSettings();
                 volumeQualities[2].SetActive(true);
-
-                ResetLightSettings();
             break;
         }
     }

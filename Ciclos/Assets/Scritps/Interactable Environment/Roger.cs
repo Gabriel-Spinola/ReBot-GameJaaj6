@@ -9,10 +9,12 @@ public class Roger : MonoBehaviour
 
     private Animator anim = null;
     private Light2D lightC = null;
+    private DialogueTrigger dialogueTrigger = null;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        dialogueTrigger = GetComponent<DialogueTrigger>();
         lightC = GetComponentInChildren<Light2D>();
     }
 
@@ -21,10 +23,16 @@ public class Roger : MonoBehaviour
         anim.SetTrigger("Activate");
 
         Destroy(door);
+        Destroy(GetComponent<Collider2D>());
     }
 
     public void ChangeLightColor()
     {
         lightC.color = Color.cyan;
+    }
+
+    public void TriggerNextDialogue()
+    {
+        dialogueTrigger.TriggerDialogue();
     }
 }
