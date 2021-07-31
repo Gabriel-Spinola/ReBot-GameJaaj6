@@ -24,15 +24,6 @@ public class PlayerInteract : MonoBehaviour
     {
         if (DialoguesManager.IsOnADialogue)
             return;
-
-        if (canUseGauntlet && player.InputManager.keyGauntlet) {
-            StartCoroutine(StartTimeTravel(gauntletDelay));
-            StartCoroutine(player.DisablePlayer(gauntletDelay));
-            StartCoroutine(player.playerGraphics.DisableAnimation(gauntletDelay));
-            player.playerGraphics.SetUsingGauntlet(true);
-
-            StartCoroutine(DisableGauntlet(gauntletCooldown));
-        }   
     }
 
     private IEnumerator StartTimeTravel(float time)
@@ -78,17 +69,6 @@ public class PlayerInteract : MonoBehaviour
             case "DialogueTrigger":
                 other.GetComponent<DialogueTrigger>().TriggerDialogue();
             break;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("KeyGauntlet")) {
-            if (player.InputManager.keyUse) {
-                Destroy(other.gameObject);
-            
-                canUseGauntlet = true;
-            }
         }
     }
 }

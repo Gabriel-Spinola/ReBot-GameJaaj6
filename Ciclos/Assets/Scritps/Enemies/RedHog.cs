@@ -73,8 +73,8 @@ public class RedHog : EnemyPatrol
                 bullet_.damage = damage;
                 bullet_.speed = bulletSpeed;
                 bullet_.dir = bullet_.transform.right;
-                bullet_.xScale = bullet_.transform.localScale.x;
-                bullet_.transform.rotation = Quaternion.Euler(bullet_.transform.rotation.x, bullet_.transform.rotation.y, currentShootAngle);
+                bullet_.xScale = -1f;
+                bullet_.transform.rotation = Quaternion.Euler(bullet_.transform.rotation.x, bullet_.transform.rotation.y, transform.rotation.z + currentShootAngle);
             }
         }
 

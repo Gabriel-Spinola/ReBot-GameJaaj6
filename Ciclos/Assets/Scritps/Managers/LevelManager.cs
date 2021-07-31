@@ -36,21 +36,21 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator LoadLevel(int levelIndex)
     {
-        if (player != null)
-            StartCoroutine(player.DisablePlayer(transitionTime));
-
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelIndex);
+
+        if (player != null)
+            StartCoroutine(player.DisablePlayer(transitionTime));
     }
 
     public IEnumerator LoadLevel(string levelName)
     {
-        if (player != null)
-            StartCoroutine(player.DisablePlayer(transitionTime));
-
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelName);
+
+        if (player != null)
+            StartCoroutine(player.DisablePlayer(transitionTime));
     }
 }

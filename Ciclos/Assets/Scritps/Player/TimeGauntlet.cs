@@ -18,8 +18,6 @@ public class TimeGauntlet : MonoBehaviour
     private void Update()
     {
         IsOnPast = isOnPast;
-
-        usedGauntlet = inputManager.keyGauntlet;
     }
 
     public void UpdateGauntlet()

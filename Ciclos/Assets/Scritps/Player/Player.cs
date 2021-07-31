@@ -313,14 +313,14 @@ public class Player : MonoBehaviour
     public Rigidbody2D GetRigidbody() => rb;
     public void SetUseBetterJump(bool val) => useBetterJump = val;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.layer == whatIsSpikesLayerID) {
+        if (other.gameObject.layer == whatIsSpikesLayerID) {
             TakeDamage();
         }
 
-        if (collision.gameObject.CompareTag("Platform")) {
-            transform.parent = collision.gameObject.transform;
+        if (other.gameObject.CompareTag("Platform")) {
+            transform.parent = other.gameObject.transform;
 
             disableInterpolation = true;
 
@@ -329,12 +329,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D other)
     {
-        if (collision.gameObject.CompareTag("Platform")) {
+        if (other.gameObject.CompareTag("Platform")) {
             transform.parent = null;
 
             canChangeInterpolation = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet")) {
+            TakeDamage();
         }
     }
 

@@ -12,6 +12,7 @@ TagManager:
   - Explosion
   - DialogueTrigger
   - Global Light
+  - Bullet
   layers:
   - Default
   - TransparentFX
