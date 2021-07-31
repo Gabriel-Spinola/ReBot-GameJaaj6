@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public bool keyJumpHold;
 
     public bool keyUse;
+    public bool keyUseHold;
 
     private void Awake()
     {
@@ -22,5 +23,6 @@ public class InputManager : MonoBehaviour
         keyJumpHold = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
 
         keyUse = Input.GetKeyDown(KeyCode.E);
+        keyUseHold = Input.GetKey(KeyCode.E);
     }
 }

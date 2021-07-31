@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Keys : MonoBehaviour
 {
-    [SerializeField] private GameObject holdDoor;
+    [SerializeField] private Door door;
 
     public void OpenDoor()
     {
-        Destroy(holdDoor);
         Destroy(gameObject);
+
+        door.Open();
     }
 }

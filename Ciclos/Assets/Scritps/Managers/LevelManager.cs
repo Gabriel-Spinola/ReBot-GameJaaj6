@@ -19,6 +19,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Debug.Log(CurrentLevel);
+    }
+
     public void GoToNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] private TimeGauntlet timeGauntlet;
     [SerializeField] private LevelManager levelManager;
 
     [SerializeField] private float gauntletCooldown = 1f;
@@ -12,7 +11,6 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] private bool canUseGauntlet = false;
     
-
     private Player player = null;
 
     private void Awake()
@@ -20,39 +18,15 @@ public class PlayerInteract : MonoBehaviour
         player = GetComponent<Player>();
     }
 
+#if UNITY_EDITOR
     private void Update()
     {
-        if (DialoguesManager.IsOnADialogue)
-            return;
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            levelManager.GoToNextLevel();
+            LevelManager.CurrentLevel++;
+        }
     }
-
-    private IEnumerator StartTimeTravel(float time)
-    {
-        player.canMove = false;
-        player.SetUseBetterJump(false);
-        
-        player.GetRigidbody().gravityScale = 0f;
-        player.GetRigidbody().velocity = Vector2.zero;
-        GetComponent<Collider2D>().isTrigger = true;
-
-        yield return new WaitForSeconds(time);
-
-        player.canMove = true;
-        player.SetUseBetterJump(true);
-        player.GetRigidbody().gravityScale = 2f;
-        player.playerGraphics.SetUsingGauntlet(false);
-        timeGauntlet.UpdateGauntlet();
-        GetComponent<Collider2D>().isTrigger = false;
-    }
-
-    private IEnumerator DisableGauntlet(float time)
-    {
-        canUseGauntlet = false;
-
-        yield return new WaitForSeconds(time);
-
-        canUseGauntlet = true;
-    }
+#endif
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -71,7 +45,7 @@ public class PlayerInteract : MonoBehaviour
             break;
 
             case "Roger":
-                if (player.InputManager.keyUse) {
+                if (player.InputManager.keyUse || player.InputManager.keyUseHold) {
                     other.GetComponent<Roger>().Trigger();
                 }
             break;
@@ -80,8 +54,10 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Roger") && player.InputManager.keyUse) {
-            other.GetComponent<Roger>().Trigger();
+        if (other.CompareTag("Roger")) {
+            if (player.InputManager.keyUse || player.InputManager.keyUseHold) {
+                other.GetComponent<Roger>().Trigger();
+            }
         }
     }
 }

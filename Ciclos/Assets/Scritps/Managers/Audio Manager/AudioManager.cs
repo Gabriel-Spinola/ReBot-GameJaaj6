@@ -66,15 +66,15 @@ public class AudioManager : MonoBehaviour
         switch (channel) {
             case AudioChannel.Master:
                 MasterVolumePercent = volumePercent;
-                break;
+            break;
 
             case AudioChannel.SFX:
                 SFXVolumePercent = volumePercent;
-                break;
+            break;
 
             case AudioChannel.Music:
                 MusicVolumePercent = volumePercent;
-                break;
+            break;
         }
 
         for (int i = 0; i < musicSources.Length; i++) {
