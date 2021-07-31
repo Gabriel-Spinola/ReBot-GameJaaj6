@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5465996688592246666}
-  transitionTime: 1
+  transitionTime: 0.4
 --- !u!1 &5465996689114098077
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5465996689114098077}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

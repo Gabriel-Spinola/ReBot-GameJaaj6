@@ -39,8 +39,6 @@ public class LevelManager : MonoBehaviour
         if (player != null)
             StartCoroutine(player.DisablePlayer(transitionTime));
 
-        anim.SetTrigger("Start");
-
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelIndex);
@@ -48,7 +46,8 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator LoadLevel(string levelName)
     {
-        anim.SetTrigger("Start");
+        if (player != null)
+            StartCoroutine(player.DisablePlayer(transitionTime));
 
         yield return new WaitForSeconds(transitionTime);
 
