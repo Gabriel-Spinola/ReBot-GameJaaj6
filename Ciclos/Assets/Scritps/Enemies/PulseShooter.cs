@@ -47,7 +47,7 @@ public class PulseShooter : MonoBehaviour
             }
 
             if (currentIndex >= 1 && startShooting) {
-                Shoot();
+                StartCoroutine(Shoot(true));
             }
             else {
                 laserBeam.DisableLaser();
@@ -65,14 +65,26 @@ public class PulseShooter : MonoBehaviour
         if (laserBeam.hit.collider.CompareTag("Player")) {
             laserBeam.hit.collider.gameObject.GetComponent<Player>().TakeDamage();
         }
-
-        if (TimeGauntlet.usedGauntlet) {
-            ResetValues();
-        }
     }
 
     private void Shoot()
     {
+        if (laserBeam.isDisabled)
+            laserBeam.EnableLaser();
+
+        laserBeam.UpdateLaser(laserBeam.lineRenderer);
+
+        if (Time.time >= nextTimeToFire) {
+            nextTimeToFire = Time.time + 1f / timeToOverheat;
+
+            currentIndex--;
+        }
+    }
+
+    private IEnumerator Shoot(bool shootWhenCollidedWithlayer = false)
+    {
+        yield return new WaitForSeconds(.5f);
+
         if (laserBeam.isDisabled)
             laserBeam.EnableLaser();
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3543981231239095268}
   - component: {fileID: 3543981231239095269}
   - component: {fileID: 3543981231239095275}
+  - component: {fileID: 4262484710238029972}
   m_Layer: 0
   m_Name: RicarP2
   m_TagString: Untagged
@@ -73,10 +74,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1036490751
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca41270b961b08942974b7be965db131, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -2669234530748978205, guid: db7ee840cd505684c9a32dccb066e7ea,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +105,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -181,7 +183,29 @@ MonoBehaviour:
   isOnRightWall: 0
   isOnLeftWall: 0
   isOnWall: 0
+  isGroundedEarly: 0
+  bottomColYSize: 0
+  wallSide: 0
   isGrounded: 1
+--- !u!95 &4262484710238029972
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3543981231239095271}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f1b561f536534341ad4435047dd42c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5942765444385013821
 GameObject:
   m_ObjectHideFlags: 0

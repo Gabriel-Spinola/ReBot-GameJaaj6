@@ -349,9 +349,4 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawWireSphere((Vector2) transform.position + s, f);
     }
-
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(0, 0, 100, 100), ((int) (1.0f / Time.deltaTime)).ToString());
-    }
 }
