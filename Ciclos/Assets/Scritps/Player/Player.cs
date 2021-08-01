@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collision))]
 public class Player : MonoBehaviour
 {
-    [Header("References")]
+    [SerializeField] private bool shouldDie = false;
+
+    [Header("References")]  
     [SerializeField] private ParticleSystem jumpParticle;
     [SerializeField] private ParticleSystem wallJumpParticle;
     [SerializeField] private ParticleSystem slideParticle;
@@ -299,13 +301,13 @@ public class Player : MonoBehaviour
     private void Die()
     {
 #if UNITY_EDITOR
-        Debug.Log("Died");
+        if (!shouldDie) {
+            Debug.Log("Died");
 
-        return;
+            return;
+        }
 #endif
-#pragma warning disable CS0162
         roomManager.Respawn();
-#pragma warning restore CS0162
     }
 
     public void TakeDamage() => Die();

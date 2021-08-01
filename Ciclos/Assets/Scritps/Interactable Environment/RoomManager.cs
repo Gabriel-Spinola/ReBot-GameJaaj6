@@ -45,5 +45,6 @@ public class RoomManager : MonoBehaviour
     public void Respawn()
     {
         player.transform.position = spawnPosition;
+        StartCoroutine(player.DisableMovement(.35f));
     }
 }
