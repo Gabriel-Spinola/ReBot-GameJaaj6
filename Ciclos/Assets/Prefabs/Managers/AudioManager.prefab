@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3240425907172566815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3240425907172566883}
+  - component: {fileID: 3240425907172566882}
+  - component: {fileID: 3240425907172566813}
+  - component: {fileID: 3240425907172566812}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3240425907172566883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240425907172566815}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 89.999985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3240425907172566882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240425907172566815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a6f0281195a0446b45069d31bf6bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3240425907172566813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240425907172566815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ffac78396c5f443999e5fdbeb9b84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneThemes:
+  - name: MainMenu
+    theme: {fileID: 8300000, guid: 5fe33863c93b10940a13650cdbdf1048, type: 3}
+    fadeDuration: 2
+    pitch: 1
+  - name: BuildTest
+    theme: {fileID: 8300000, guid: 5fe33863c93b10940a13650cdbdf1048, type: 3}
+    fadeDuration: 2
+    pitch: 1
+--- !u!114 &3240425907172566812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240425907172566815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac25a62aee124fb4e87b2e5f36f34b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundGroups:
+  - groupID: Walk
+    group:
+    - {fileID: 8300000, guid: f0c305560e91dff4980903cdcef2e139, type: 3}
+    - {fileID: 8300000, guid: 7e69d246610d51d479a1e826ca01c954, type: 3}
+    - {fileID: 8300000, guid: 377443f6c67b778459a5593201c8ce5d, type: 3}
+    - {fileID: 8300000, guid: ba8bd9a410a75bb48b8b83b87eaed301, type: 3}
+  - groupID: Jump
+    group:
+    - {fileID: 8300000, guid: bdb5f6a61db11784292a3679f9fbaefd, type: 3}
+    - {fileID: 8300000, guid: b8bd3935a312bdc46aa136903a4a1910, type: 3}

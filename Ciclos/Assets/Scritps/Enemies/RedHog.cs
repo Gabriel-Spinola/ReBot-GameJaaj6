@@ -9,8 +9,8 @@ public class RedHog : EnemyPatrol
 
     [Header("RefHog Stats")]
     [SerializeField] private float friction = .2f;
-    [Range(1f, 5f)]
-    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private Vector2 attackAreaOffset = Vector2.zero;
+    [SerializeField] private Vector2 attackAreaSize = Vector2.zero;
     [Tooltip("In Seconds")]
     [SerializeField] private float waitToAttack = 1.5f;
 
@@ -51,7 +51,7 @@ public class RedHog : EnemyPatrol
     {
         base.FixedUpdate();
 
-        isAttacking = Physics2D.OverlapCircle(transform.position, attackRange, whatIsPlayer);
+        isAttacking = Physics2D.OverlapBox((Vector2) transform.position + attackAreaOffset, attackAreaSize, 0f, whatIsPlayer);
     }
 
     private IEnumerator Attack(float time)
@@ -73,8 +73,8 @@ public class RedHog : EnemyPatrol
                 bullet_.damage = damage;
                 bullet_.speed = bulletSpeed;
                 bullet_.dir = bullet_.transform.right;
-                bullet_.xScale = bullet_.transform.localScale.x;
-                bullet_.transform.rotation = Quaternion.Euler(bullet_.transform.rotation.x, bullet_.transform.rotation.y, currentShootAngle);
+                bullet_.xScale = -1f;
+                bullet_.transform.rotation = Quaternion.Euler(bullet_.transform.rotation.x, bullet_.transform.rotation.y, transform.rotation.z + currentShootAngle);
             }
         }
 
@@ -84,6 +84,6 @@ public class RedHog : EnemyPatrol
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireCube((Vector2) transform.position + attackAreaOffset, attackAreaSize);
     }
 }

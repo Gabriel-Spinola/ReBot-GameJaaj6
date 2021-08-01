@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1036490751
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ca41270b961b08942974b7be965db131, type: 3}
-  m_Color: {r: 0.8958565, g: 0, b: 0.9811321, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6951a4bc98ad8dc41a9cd69abe634dad, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.1428572, y: 1.1428572}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -156,7 +156,8 @@ MonoBehaviour:
   walkSpeed: 450
   bullet: {fileID: 7616858314163952191, guid: 90946105784fac048a6c6434f232ce91, type: 3}
   friction: 0.05
-  attackRange: 5
+  attackAreaOffset: {x: 0, y: 0}
+  attackAreaSize: {x: 0, y: 0}
   waitToAttack: 1.5
   bulletSpeed: 8
   damage: 1
@@ -188,6 +189,9 @@ MonoBehaviour:
   isOnRightWall: 0
   isOnLeftWall: 0
   isOnWall: 0
+  isGroundedEarly: 0
+  bottomColYSize: 0
+  wallSide: 0
   isGrounded: 1
 --- !u!1 &8991089509843999129
 GameObject:

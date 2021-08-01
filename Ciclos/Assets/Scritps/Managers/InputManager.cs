@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEngine.SceneManagement;
-#endif
-
 public class InputManager : MonoBehaviour
 {
     public float xAxis;
@@ -11,7 +7,8 @@ public class InputManager : MonoBehaviour
     public bool keyJump;
     public bool keyJumpHold;
 
-    public bool keyGauntlet;
+    public bool keyUse;
+    public bool keyUseHold;
 
     private void Awake()
     {
@@ -25,10 +22,7 @@ public class InputManager : MonoBehaviour
         keyJump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         keyJumpHold = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
 
-        keyGauntlet = Input.GetKeyDown(KeyCode.F);
-
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.RightAlt)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-#endif
+        keyUse = Input.GetKeyDown(KeyCode.E);
+        keyUseHold = Input.GetKey(KeyCode.E);
     }
 }

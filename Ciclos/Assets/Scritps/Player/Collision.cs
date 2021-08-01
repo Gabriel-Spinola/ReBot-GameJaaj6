@@ -33,7 +33,7 @@ public class Collision : MonoBehaviour
 
     public bool isGrounded = false;
 
-    private void Update()
+    private void FixedUpdate()
     {
         isOnRightWall = Physics2D.OverlapCircle((Vector2) transform.position + rightColOffset, horizontalColRadius, whatIsBlocks);
         isOnLeftWall = Physics2D.OverlapCircle((Vector2) transform.position + leftColOffset, horizontalColRadius, whatIsBlocks);

@@ -40,7 +40,7 @@ public class FallingPlatform : MonoBehaviour
     {
         switch (time) {
             case Time.Present:
-                if (TimeGauntlet.isOnPast) {
+                if (TimeGauntlet.IsOnPast) {
                     collider.enabled = false;
                     spriteRenderer.enabled = false;
                 }
@@ -51,7 +51,7 @@ public class FallingPlatform : MonoBehaviour
             break;
 
             case Time.Past:
-                if (TimeGauntlet.isOnPast) {
+                if (TimeGauntlet.IsOnPast) {
                     collider.enabled = true;
                     spriteRenderer.enabled = true;
                 }

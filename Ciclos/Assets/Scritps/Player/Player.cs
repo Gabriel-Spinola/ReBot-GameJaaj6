@@ -1,7 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(PlayerGraphics))]
 [RequireComponent(typeof(Rigidbody2D), typeof(Collision))]
 public class Player : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class Player : MonoBehaviour
     [SerializeField] private ParticleSystem jumpParticle;
     [SerializeField] private ParticleSystem wallJumpParticle;
     [SerializeField] private ParticleSystem slideParticle;
-
-    [SerializeField] private LayerMask whatIsSpikes = 0;
+    [SerializeField] private RoomManager roomManager;
 
     public InputManager InputManager;
+
+    [SerializeField] private int whatIsSpikesLayerID = 0;
+
+    [SerializeField] private Vector2 s;
+    [SerializeField] private float f;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
@@ -24,18 +29,20 @@ public class Player : MonoBehaviour
     [SerializeField] private float lowJumpMultiplier = 2;
 
     [Header("Walljump")]
-    [SerializeField] private float wallJumpForce = 10f;
+    [SerializeField] private float wallJumpHeight = 10f;
+    [SerializeField] private float wallJumpSpeed = 10f;
 
     [Header("WallSlide")]
     [SerializeField] private float slideSpeed = 6f;
     [SerializeField] private float slideDelay = 1f;
+
+    [HideInInspector] public PlayerGraphics playerGraphics = null;
 
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool wallSlide = false;
 
     private Rigidbody2D rb = null;
     private Collision col = null;
-    private PlayerGraphics playerGraphics = null;
 
     private bool wallJumped = false;
     private bool avoidDoubleJump = false;
@@ -43,6 +50,7 @@ public class Player : MonoBehaviour
     private bool isInterpolationDisabled = false;
     private bool canChangeInterpolation = false;
     private bool disableInterpolation = false;
+    private bool isPlayerDisabled = false;
 
     private bool prevGrounded = false;
 
@@ -58,6 +66,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (DialoguesManager.IsOnADialogue) {
+            rb.velocity = Vector2.zero;
+
+            return;
+        }
+
+        if (isPlayerDisabled) {
+            return;
+        }
+
+        if (IsCrushed()) {
+            Die();
+        }
+
         if (col.isGrounded && !prevGrounded) {
             playerGraphics.SetTrigger("", "Squash");
         }
@@ -70,8 +92,8 @@ public class Player : MonoBehaviour
 
         canJump--;
 
-        if (col.isGroundedEarly) {
-            canJump = 20;
+        if (col.isGrounded) {
+            canJump = 8;
         }
 
         if (col.isGrounded) {
@@ -83,13 +105,13 @@ public class Player : MonoBehaviour
             if (canJump > 0) {
                 Jump(jumpForce);
             }
-            
+
             if (!col.isGrounded && col.isOnWall) {
                 WallJump();
             }
         }
 
-        if (col.isOnWall && !col.isGrounded) {
+        if (col.isOnWall && !col.isGrounded && !InputManager.keyJump && rb.velocity.y < 0.01f) {
             if (InputManager.xAxis != 0) {
                 wallSlide = true;
 
@@ -154,9 +176,11 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         particle.Play();
+        AudioManager._I.PlaySound2D("Jump");
+
         canJump = 0;
 
-        StartCoroutine(DisableJump(.2f));
+        StartCoroutine(DisableJump(.3f));
     }
 
     public void Jump(Vector2 jumpDir)
@@ -169,7 +193,10 @@ public class Player : MonoBehaviour
         rb.velocity = jumpDir;
 
         particle.Play();
+        AudioManager._I.PlaySound2D("Jump");
+
         canJump = 0;
+        StartCoroutine(DisableJump(.3f));
     }
 
     private void WallJump()
@@ -184,17 +211,17 @@ public class Player : MonoBehaviour
         int wallJumpDir = col.isOnRightWall ? -1 : col.isOnLeftWall ? 1 : 0;
         wallJumped = true;
 
-        Jump(Vector2.right * wallJumpForce / 1.5f * wallJumpDir + Vector2.up * wallJumpForce / 1.2f);
+        Jump(Vector2.right * wallJumpSpeed / 1.2f * wallJumpDir + Vector2.up * wallJumpHeight / 1.2f);
     }
 
     private IEnumerator WallSlide(float time)
     {
-        yield return new WaitForSeconds(time);
-
         if (col.wallSide != side)
             playerGraphics.Flip(side * -1);
 
-        if (!canMove)
+        yield return new WaitForSeconds(time);
+
+        if (!canMove || InputManager.keyJump || InputManager.keyJumpHold)
             yield break;
 
         bool pushingWall = false;
@@ -223,25 +250,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator DisableMovement(float time)
-    {
-        canMove = false;
-
-        yield return new WaitForSeconds(time);
-
-        canMove = true;
-    }
-
-    private IEnumerator DisableJump(float time)
-    {
-        avoidDoubleJump = true;
-
-        yield return new WaitForSeconds(time);
-
-        avoidDoubleJump = false;
-    }
-
-    void WallParticle()
+    private void WallParticle()
     {
         var main = slideParticle.main;
 
@@ -254,25 +263,64 @@ public class Player : MonoBehaviour
         }
     }
 
-    int ParticleSide() => col.isOnRightWall ? 1 : -1;
+    private int ParticleSide() => col.isOnRightWall ? 1 : -1;
+
+    private bool IsCrushed() => col.isGrounded && Physics2D.OverlapCircle((Vector2) transform.position + s, f).CompareTag("Platform");
+
+    public IEnumerator DisableMovement(float time)
+    {
+        canMove = false;
+
+        yield return new WaitForSeconds(time);
+
+        canMove = true;
+    }
+
+    public IEnumerator DisablePlayer(float time)
+    {
+        isPlayerDisabled = true;
+        rb.velocity = new Vector2(0f, rb.velocity.y);
+        InputManager.xAxis = 0f;
+
+        yield return new WaitForSeconds(time);
+
+        isPlayerDisabled = false;
+    }
+
+    public IEnumerator DisableJump(float time)
+    {
+        avoidDoubleJump = true;
+
+        yield return new WaitForSeconds(time);
+
+        avoidDoubleJump = false;
+    }
 
     private void Die()
     {
-        Debug.Log("DIED");
+#if UNITY_EDITOR
+        Debug.Log("Died");
+
+        return;
+#endif
+#pragma warning disable CS0162
+        roomManager.Respawn();
+#pragma warning restore CS0162
     }
 
     public void TakeDamage() => Die();
 
+    public Rigidbody2D GetRigidbody() => rb;
     public void SetUseBetterJump(bool val) => useBetterJump = val;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (collision.gameObject.layer == whatIsSpikes) {
+        if (other.gameObject.layer == whatIsSpikesLayerID) {
             TakeDamage();
         }
 
-        if (collision.gameObject.CompareTag("Platform")) {
-            transform.parent = collision.gameObject.transform;
+        if (other.gameObject.CompareTag("Platform")) {
+            transform.parent = other.gameObject.transform;
 
             disableInterpolation = true;
 
@@ -281,12 +329,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D other)
     {
-        if (collision.gameObject.CompareTag("Platform")) {
+        if (other.gameObject.CompareTag("Platform")) {
             transform.parent = null;
 
             canChangeInterpolation = true;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet")) {
+            TakeDamage();
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere((Vector2) transform.position + s, f);
     }
 }
