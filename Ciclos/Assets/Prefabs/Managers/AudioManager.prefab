@@ -89,3 +89,12 @@ MonoBehaviour:
     group:
     - {fileID: 8300000, guid: bdb5f6a61db11784292a3679f9fbaefd, type: 3}
     - {fileID: 8300000, guid: b8bd3935a312bdc46aa136903a4a1910, type: 3}
+  - groupID: Player-Death
+    group:
+    - {fileID: 8300000, guid: bda6a671b4de9f746bea1817f40cf3f9, type: 3}
+  - groupID: Shoot
+    group:
+    - {fileID: 8300000, guid: 50adc907118da514e9205677e2b7ffb7, type: 3}
+  - groupID: Landing
+    group:
+    - {fileID: 8300000, guid: c8389f30f1c27ed4abb931ccaf6bc512, type: 3}
