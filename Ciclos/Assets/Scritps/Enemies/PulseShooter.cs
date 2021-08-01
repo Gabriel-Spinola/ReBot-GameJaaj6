@@ -62,8 +62,10 @@ public class PulseShooter : MonoBehaviour
             }
         }
 
-        if (laserBeam.hit.collider.CompareTag("Player")) {
-            laserBeam.hit.collider.gameObject.GetComponent<Player>().TakeDamage();
+        if (!shootWhenCollidedWithlayer) {
+            if (laserBeam.hit.collider.CompareTag("Player")) {
+                laserBeam.hit.collider.gameObject.GetComponent<Player>().TakeDamage();
+            }
         }
     }
 
@@ -89,6 +91,9 @@ public class PulseShooter : MonoBehaviour
             laserBeam.EnableLaser();
 
         laserBeam.UpdateLaser(laserBeam.lineRenderer);
+
+        if (laserBeam.hit.collider.CompareTag("Player"))
+            laserBeam.hit.collider.gameObject.GetComponent<Player>().TakeDamage();
 
         if (Time.time >= nextTimeToFire) {
             nextTimeToFire = Time.time + 1f / timeToOverheat;
