@@ -6,6 +6,10 @@ public class MusicManager : MonoBehaviour
 	[SerializeField] private SceneTheme[] sceneThemes;
 
 	private string sceneName;
+	private AudioClip clipHolder = null;
+	float fadeHolder = 0f;
+	float pitchHolder = 0f;
+	private bool restart = false;
 
 	private void Awake()
 	{
@@ -26,7 +30,12 @@ public class MusicManager : MonoBehaviour
 		});
 	}
 
-	void PlayMusic()
+    private void Start()
+    {
+		InvokeRepeating(nameof(Restart), 0f, 1f);
+	}
+
+    void PlayMusic()
 	{
 		AudioClip clipToPlay = null;
 		float fadeDuration = 0f;
@@ -41,9 +50,25 @@ public class MusicManager : MonoBehaviour
 		}
 
 		if (clipToPlay != null) {
-			AudioManager._I.PlayMusic(clipToPlay, fadeDuration, pitch);
+			clipHolder = clipToPlay;
+			fadeHolder = fadeDuration;
+			pitchHolder = pitch;
+			restart = true;
 
+			AudioManager._I.PlayMusic(clipToPlay, fadeDuration, pitch);
+			
 			Invoke(nameof(PlayMusic), clipToPlay.length);
+		}
+	}
+
+	public void Restart()
+    {
+		if (restart) {
+			AudioManager._I.PlayMusic(clipHolder, fadeHolder, pitchHolder);
+
+			Invoke(nameof(PlayMusic), clipHolder.length);
+
+			restart = false;
 		}
 	}
 

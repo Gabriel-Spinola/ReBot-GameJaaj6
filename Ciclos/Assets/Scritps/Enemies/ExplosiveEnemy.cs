@@ -76,6 +76,8 @@ public class ExplosiveEnemy : EnemyPatrol
 
         yield return new WaitForSeconds(time);
 
+        AudioManager._I.PlaySound2D("Explosion");
+
         Explosion explosion_ = Instantiate(explosionEffect, transform.position, Quaternion.identity).GetComponent<Explosion>();
         explosion_.radius = explosionRadius;
 

@@ -27,23 +27,29 @@ public class Carlos : Enemy
 
     private void Update()
     {
-        if (shouldAim && !Physics2D.Linecast(transform.position, player.position, whatIsWall)) {
-            lookDir = StaticRes.LookDir(transform.position, player.position);
-            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, lookDir));
+        if (!Physics2D.Linecast(transform.position, player.position, whatIsWall)) {
+            if (shouldAim) {
+                lookDir = StaticRes.LookDir(transform.position, player.position);
+                transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, lookDir));
 
-            if (Time.time >= nextTimeToFire) {
-                nextTimeToFire = Time.time + 1f / fireRate;
+                if (Time.time >= nextTimeToFire) {
+                    nextTimeToFire = Time.time + 1f / fireRate;
 
-                Shoot();
-                shootParticle.Play();
+                    Shoot();
+                    shootParticle.Play();
+                    AudioManager._I.PlaySound2D("Shoot", .8f);
+                }
+
             }
-        }
-        else {
-            if (Time.time >= nextTimeToFire) {
-                nextTimeToFire = Time.time + 1f / fireRate;
+            else {
+                if (Time.time >= nextTimeToFire) {
+                    nextTimeToFire = Time.time + 1f / fireRate;
 
-                Shoot();
-                shootParticle.Play();
+                    AudioManager._I.PlaySound2D("Shoot", .8f);
+
+                    Shoot();
+                    shootParticle.Play();
+                }
             }
         }
     }
@@ -62,12 +68,5 @@ public class Carlos : Enemy
         }
 
         scaleAnim.SetTrigger("Squash");
-
-        if (transform.parent.parent.name == "--- Present ---") {
-            currentBullet.transform.parent = RoomManager.PresentTemporaryObjects;
-        }
-        else if (transform.parent.parent.name == "--- Past ---") {
-            currentBullet.transform.parent = RoomManager.PastTemporaryObjects;
-        }
     }
 }

@@ -70,6 +70,11 @@ public class Player : MonoBehaviour
     {
         if (DialoguesManager.IsOnADialogue) {
             rb.velocity = Vector2.zero;
+            if (side == -1) {
+                side = 1;
+
+                playerGraphics.Flip(side);
+            }
 
             return;
         }
@@ -84,6 +89,7 @@ public class Player : MonoBehaviour
 
         if (col.isGrounded && !prevGrounded) {
             playerGraphics.SetTrigger("", "Squash");
+            AudioManager._I.PlaySound2D("Landing", .4f, 100);
         }
 
         BetterJump();
@@ -307,6 +313,7 @@ public class Player : MonoBehaviour
             return;
         }
 #endif
+
         roomManager.Respawn();
     }
 

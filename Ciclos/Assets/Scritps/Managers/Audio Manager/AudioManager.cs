@@ -95,6 +95,7 @@ public class AudioManager : MonoBehaviour
 
         musicSources[activeMusicSource].clip = clip;
         musicSources[activeMusicSource].pitch = pitch;
+        musicSources[activeMusicSource].priority = 5;
         musicSources[activeMusicSource].Play();
 
         StartCoroutine(MusicCrossfade(fadeDuration));

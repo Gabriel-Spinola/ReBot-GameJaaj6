@@ -59,11 +59,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneThemes:
   - name: MainMenu
-    theme: {fileID: 8300000, guid: 5fe33863c93b10940a13650cdbdf1048, type: 3}
+    theme: {fileID: 8300000, guid: 7ecde29ad960ff94f8577b4931486401, type: 3}
+    fadeDuration: 1
+    pitch: 1
+  - name: Level1
+    theme: {fileID: 8300000, guid: 467fdbd922ea9bc46b82aa0d1a150417, type: 3}
     fadeDuration: 2
     pitch: 1
-  - name: BuildTest
-    theme: {fileID: 8300000, guid: 5fe33863c93b10940a13650cdbdf1048, type: 3}
+  - name: Level3
+    theme: {fileID: 8300000, guid: f9c9e9b0d1e648e45a7cb84e97d3e5f3, type: 3}
     fadeDuration: 2
     pitch: 1
 --- !u!114 &3240425907172566812
@@ -98,3 +102,9 @@ MonoBehaviour:
   - groupID: Landing
     group:
     - {fileID: 8300000, guid: c8389f30f1c27ed4abb931ccaf6bc512, type: 3}
+  - groupID: Explosion
+    group:
+    - {fileID: 8300000, guid: 4691acb245a36d041ab1b80407d5ea1f, type: 3}
+  - groupID: Pickup
+    group:
+    - {fileID: 8300000, guid: 75836351f0cbfa941864934aac40dc46, type: 3}

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RedHog : EnemyPatrol
 {
     [Header("RedHog References")]
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform player;
+
+    [SerializeField] private LayerMask whatIsWall;
 
     [Header("RefHog Stats")]
     [SerializeField] private float friction = .2f;
@@ -58,32 +60,30 @@ public class RedHog : EnemyPatrol
     {
         yield return new WaitForSeconds(time);
 
-        if (Time.time >= nextTimeToFire) {
-            nextTimeToFire = Time.time + 1f / fireRate;
+        if (!Physics2D.Linecast(transform.position, player.position, whatIsWall)) {
+            if (Time.time >= nextTimeToFire) {
+                nextTimeToFire = Time.time + 1f / fireRate;
 
-            for (int i = 1; i <= amountOfBulletsPerShoot; i++) {
-                if (currentShootAngle >= amountOfBulletsPerShoot * angle || currentShootAngle >= maxRotation) {
-                    currentShootAngle = initialAngle;
+                AudioManager._I.PlaySound2D("Shoot", .8f);
+
+                for (int i = 1; i <= amountOfBulletsPerShoot; i++) {
+                    if (currentShootAngle >= amountOfBulletsPerShoot * angle || currentShootAngle >= maxRotation) {
+                        currentShootAngle = initialAngle;
+                    }
+
+                    currentShootAngle += i * angle;
+
+                    CommonBullet bullet_ = Instantiate(bullet, transform.position, transform.rotation).GetComponent<CommonBullet>();
+
+                    bullet_.damage = damage;
+                    bullet_.speed = bulletSpeed;
+                    bullet_.dir = bullet_.transform.right;
+                    bullet_.xScale = -1f;
+                    bullet_.transform.rotation = Quaternion.Euler(bullet_.transform.rotation.x, bullet_.transform.rotation.y, transform.rotation.z + currentShootAngle);
                 }
-
-                currentShootAngle += i * angle;
-
-                CommonBullet bullet_ = Instantiate(bullet, transform.position, transform.rotation).GetComponent<CommonBullet>();
-
-                bullet_.damage = damage;
-                bullet_.speed = bulletSpeed;
-                bullet_.dir = bullet_.transform.right;
-                bullet_.xScale = -1f;
-                bullet_.transform.rotation = Quaternion.Euler(bullet_.transform.rotation.x, bullet_.transform.rotation.y, transform.rotation.z + currentShootAngle);
             }
         }
 
         yield return 0;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube((Vector2) transform.position + attackAreaOffset, attackAreaSize);
     }
 }

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class RicarP2 : EnemyPatrol
 {
+    [SerializeField] protected Vector2 soundAreaOffset;
+    [SerializeField] protected Vector2 soundAreaSize;
+
     [Header("Ricardão References")]
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPos;
+    [SerializeField] private Transform player;
+
+    [SerializeField] private LayerMask whatIsWall;
 
     [Header("Ricardão Stats")]
     [SerializeField] private float fireRate = 1f;
@@ -20,11 +26,20 @@ public class RicarP2 : EnemyPatrol
     {
         base.Update();
 
-        if (Time.time >= nextTimeToFire) {
-            nextTimeToFire = Time.time + 1f / fireRate;
+        if (!Physics2D.Linecast(transform.position, player.position, whatIsWall)) {
+            if (Time.time >= nextTimeToFire) {
+                nextTimeToFire = Time.time + 1f / fireRate;
 
-            Shoot();
+                Shoot();
+
+                AudioManager._I.PlaySound2D("Shoot", .8f);
+            }
         }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
     }
 
     private void Shoot()
@@ -45,12 +60,11 @@ public class RicarP2 : EnemyPatrol
             y: currentBullet.transform.rotation.y,
             z: angle
         );
+    }
 
-        if (transform.parent.parent.name == "--- Present ---") {
-            currentBullet.transform.parent = RoomManager.PresentTemporaryObjects;
-        }
-        else if (transform.parent.parent.name == "--- Past ---") {
-            currentBullet.transform.parent = RoomManager.PastTemporaryObjects;
-        }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube((Vector2) transform.position + soundAreaOffset, soundAreaSize);
     }
 }

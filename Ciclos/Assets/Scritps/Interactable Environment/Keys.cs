@@ -8,6 +8,7 @@ public class Keys : MonoBehaviour
 
     public void OpenDoor()
     {
+        AudioManager._I.PlaySound2D("Pickup");
         Destroy(gameObject);
 
         door.Open();

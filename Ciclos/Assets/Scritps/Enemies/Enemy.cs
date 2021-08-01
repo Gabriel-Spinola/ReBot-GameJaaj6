@@ -6,7 +6,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected LayerMask whatIsPlayer;
 
     [Header("Stats")]
-    [SerializeField] protected float health = 1f; 
+    [SerializeField] protected float health = 1f;
 
     public virtual void JumpedOn() { }
 
@@ -16,4 +16,5 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(float damage) => health -= damage;
+
 }
