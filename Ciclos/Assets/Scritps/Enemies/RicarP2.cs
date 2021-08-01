@@ -6,11 +6,13 @@ public class RicarP2 : EnemyPatrol
 {
     [Header("Ricardão References")]
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform shootPos;
 
     [Header("Ricardão Stats")]
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private float damage = 1f;
     [SerializeField] private float bulletSpeed = 2f;
+    [SerializeField] private float angle = 90f;
 
     private float nextTimeToFire = 0f;
 
@@ -29,7 +31,7 @@ public class RicarP2 : EnemyPatrol
     {
         CommonBullet currentBullet = Instantiate(
             original: bullet,
-            position: transform.position,
+            position: shootPos.position,
             rotation: Quaternion.identity
         ).GetComponent<CommonBullet>();
 
@@ -41,7 +43,7 @@ public class RicarP2 : EnemyPatrol
         currentBullet.transform.GetChild(0).GetComponent<Transform>().rotation = Quaternion.Euler(
             x: currentBullet.transform.rotation.x,
             y: currentBullet.transform.rotation.y,
-            z: 90f
+            z: angle
         );
 
         if (transform.parent.parent.name == "--- Present ---") {
