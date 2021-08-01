@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private GameObject jhon;
 
     [SerializeField] private float gauntletCooldown = 1f;
     [SerializeField] private float gauntletDelay = .6f;
@@ -18,15 +19,17 @@ public class PlayerInteract : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-#if UNITY_EDITOR
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             levelManager.GoToNextLevel();
             LevelManager.CurrentLevel++;
         }
-    }
 #endif
+
+        jhon.SetActive(DialoguesManager.IsOnADialogue);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) {
+        if (Input.GetKeyDown(KeyCode.Return) && !DialoguesManager.IsOnADialogue) {
             if (isGamePaused) {
                 Resume();
             }
