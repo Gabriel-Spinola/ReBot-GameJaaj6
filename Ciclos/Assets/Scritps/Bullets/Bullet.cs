@@ -13,6 +13,8 @@ public abstract class Bullet : MonoBehaviour
     [HideInInspector] public float damage;
     [HideInInspector] public float speed;
 
+    [HideInInspector] public bool isJhon = false;
+
     protected virtual void Update()
     {
         StartCoroutine(DestroyBulletOnTimer(lifeTime));
@@ -27,7 +29,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player") && !isJhon) {
             other.gameObject.GetComponent<Player>().TakeDamage();
             Destroy(gameObject);
         }

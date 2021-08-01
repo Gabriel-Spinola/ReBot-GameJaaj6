@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float gauntletDelay = .6f;
 
     [SerializeField] private bool canUseGauntlet = false;
-    
+
     private Player player = null;
+
+    private bool isFinished;
+    private bool b = false;
 
     private void Awake()
     {
@@ -28,7 +32,17 @@ public class PlayerInteract : MonoBehaviour
         }
 #endif
 
-        jhon.SetActive(DialoguesManager.IsOnADialogue);
+        if (jhon != null) {
+            jhon.SetActive(DialoguesManager.IsOnADialogue);
+        }
+
+        if (isFinished) {
+            if (!DialoguesManager.IsOnADialogue) {
+                JhonMal.shoot = true;
+            }
+
+            player.enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -39,8 +53,10 @@ public class PlayerInteract : MonoBehaviour
             break;
 
             case "NextScene":
-                levelManager.GoToNextLevel();
-                LevelManager.CurrentLevel++;
+                if (!DialoguesManager.IsOnADialogue) {
+                    levelManager.GoToNextLevel();
+                    LevelManager.CurrentLevel++;
+                }
             break;
 
             case "DialogueTrigger":
@@ -52,6 +68,23 @@ public class PlayerInteract : MonoBehaviour
                     other.GetComponent<Roger>().Trigger();
                 }
             break;
+
+            case "Jhon Mal":
+                player.canMove = false;
+                isFinished = true;
+            break;
+
+            case "BulletMal":
+                StartCoroutine(player.DisablePlayer(120f));
+                StartCoroutine(player.playerGraphics.DisableAnimation(120f));
+                InputManager.DisableInput = true;
+                player.playerGraphics.disableAnimation = true;
+
+                player.playerGraphics.SetTrigger("Die");
+
+
+                Debug.Log("Died"); 
+            break;
         }
     }
 
@@ -60,6 +93,13 @@ public class PlayerInteract : MonoBehaviour
         if (other.CompareTag("Roger")) {
             if (player.InputManager.keyUse || player.InputManager.keyUseHold) {
                 other.GetComponent<Roger>().Trigger();
+            }
+        }
+
+        if (DialoguesManager.IsOnADialogue is false) {
+            if (other.CompareTag("NextScene")) {
+                levelManager.GoToNextLevel();
+                LevelManager.CurrentLevel++;
             }
         }
     }

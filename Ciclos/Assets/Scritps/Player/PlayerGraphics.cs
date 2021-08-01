@@ -38,6 +38,11 @@ public class PlayerGraphics : MonoBehaviour
         SetAnimationBools();
     }
 
+    public void StartFinal()
+    {
+        JhonMal.playerDied = true;
+    }
+
     private void SetAnimationBools()
     {
         anim.SetBool("OnGround", col.isGrounded);
@@ -70,6 +75,11 @@ public class PlayerGraphics : MonoBehaviour
         if (heightTriggerID != "") {
             scaleAnimator.SetTrigger(heightTriggerID);
         }
+    }
+
+    public void SetTrigger(string ID)
+    {
+        anim.SetTrigger(ID);
     }
 
     public void Flip(int side)
@@ -109,4 +119,6 @@ public class PlayerGraphics : MonoBehaviour
 
         disableAnimation = false;
     }
+
+   
 }

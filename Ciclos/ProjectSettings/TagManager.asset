@@ -14,6 +14,8 @@ TagManager:
   - Global Light
   - Bullet
   - Roger
+  - Jhon Mal
+  - BulletMal
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - Spikes
   - Moving Platforms
   - Walkable Enemy
-  - 
+  - bulletmal
   - 
   - 
   - 

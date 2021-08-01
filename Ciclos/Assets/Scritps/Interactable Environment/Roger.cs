@@ -6,6 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Roger : MonoBehaviour
 {
     [SerializeField] private GameObject door = null;
+    [SerializeField] private GameObject nextRoom = null;
     [SerializeField] private Light2D[] additionalLights = null;
 
     private Animator anim = null;
@@ -25,6 +26,14 @@ public class Roger : MonoBehaviour
 
         if (door != null) {
             Destroy(door);
+
+            if(GameObject.Find("Present Tile2").gameObject != null) {
+                Destroy(GameObject.Find("Present Tile2").gameObject);
+            }
+        }
+
+        if (nextRoom != null) {
+            nextRoom.SetActive(true);
         }
 
         Destroy(GetComponent<Collider2D>());

@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
     public bool keyUse;
     public bool keyUseHold;
 
+    public static bool DisableInput = false;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -17,6 +19,9 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (DisableInput)
+            return;
+
         xAxis = Input.GetAxisRaw("Horizontal");
 
         keyJump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
