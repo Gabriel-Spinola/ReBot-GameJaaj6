@@ -6,11 +6,14 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class GraphicsManager : MonoBehaviour
 {
     public static GraphicsManager I;
-    public static int qualityLevel = 1;
+    public static int QualityLevel = 1;
+    public static bool IsLightningEnabled = true;
 
     public GameObject[] volumeQualities;
 
-    void Awake()
+    private bool isLightReseted = false;
+
+    private void Awake()
     {
         if (I == null) {
             I = this;
@@ -22,9 +25,28 @@ public class GraphicsManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         VolumeQualityLevel();
+
+        if (IsLightningEnabled) {
+            if (!isLightReseted) {
+                foreach (Light2D light in FindObjectsOfType<Light2D>()) {
+                    if (!light.isActiveAndEnabled) {
+                        ResetLightSettings();
+
+                        isLightReseted = true;
+                    }
+
+                    break;
+                }
+            }
+        }
+        else {
+            DisableLights();
+
+            isLightReseted = false;
+        }
     }
 
     private void VolumeQualityLevel()
@@ -76,7 +98,7 @@ public class GraphicsManager : MonoBehaviour
         }
     }
 
-    private void DestroyLights()
+    private void DisableLights()
     {
         foreach (Light2D light in FindObjectsOfType<Light2D>()) {
             if (!light.CompareTag("Global Light")) {
@@ -87,10 +109,10 @@ public class GraphicsManager : MonoBehaviour
             }
         }
 
-        DestroyShadowCaster();
+        DisableShadowCasters();
     }
 
-    private void DestroyShadowCaster()
+    private void DisableShadowCasters()
     {
         foreach (ShadowCaster2D shadow in FindObjectsOfType<ShadowCaster2D>()) {
             shadow.enabled = false;

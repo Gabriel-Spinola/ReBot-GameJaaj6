@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -364,8 +364,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 297.53018, y: -138.7}
-  m_SizeDelta: {x: 170, y: 20}
+  m_AnchoredPosition: {x: 327.9, y: -138.7}
+  m_SizeDelta: {x: 222.13669, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49696687
 MonoBehaviour:
@@ -412,7 +412,18 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 594788442}
+        m_MethodName: SetLightning
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &58964217
 GameObject:
@@ -2344,6 +2355,7 @@ MonoBehaviour:
   - {fileID: 1848516673}
   - {fileID: 80801015}
   fullscreenToggle: {fileID: 81267388}
+  lightConfigToggle: {fileID: 49696687}
   qualityDropdown: {fileID: 271452090}
   screenWidths: c00300000005000080070000
 --- !u!1 &615498461
@@ -6354,7 +6366,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Disable  Lights
+  m_Text: 'Disable   Lightning
 
 '
 --- !u!222 &1932899542

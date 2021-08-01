@@ -8,6 +8,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider[] volumeSliders;
     [SerializeField] private Toggle[] resolutionToggles;
     [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private Toggle lightConfigToggle;
     [SerializeField] private TMP_Dropdown qualityDropdown;
 
     [SerializeField] private int[] screenWidths;
@@ -19,6 +20,7 @@ public class SettingsMenu : MonoBehaviour
         activeScreenResIndex = PlayerPrefs.GetInt("screen res index", activeScreenResIndex);
 
         bool isFullscren = PlayerPrefs.GetInt("fullscreen") == 1;
+        bool isLightsDisabled = PlayerPrefs.GetInt("lights disabled") == 1;
 
         volumeSliders[0].value = AudioManager._I.MasterVolumePercent;
         volumeSliders[1].value = AudioManager._I.SFXVolumePercent;
@@ -29,6 +31,12 @@ public class SettingsMenu : MonoBehaviour
         }
 
         SetFullscreen(isFullscren);
+        SetLightning(isLightsDisabled);
+
+        if (!GraphicsManager.IsLightningEnabled) {
+            SetLightning(true);
+            lightConfigToggle.isOn = true;
+        }
 
         if (Screen.fullScreen) {
             SetFullscreen(true);
@@ -72,6 +80,14 @@ public class SettingsMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("fullscreen", isFullscreen ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public void SetLightning(bool isDisabled)
+    {
+        GraphicsManager.IsLightningEnabled = !isDisabled;
+
+        PlayerPrefs.SetInt("lights disabled", isDisabled ? 1 : 0);
         PlayerPrefs.Save();
     }
 
