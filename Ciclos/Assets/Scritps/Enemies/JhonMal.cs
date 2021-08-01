@@ -10,10 +10,13 @@ public class JhonMal : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private DialogueTrigger trigger;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject camera1;
+    [SerializeField] private GameObject camera2;
 
     private Animator anim;
 
     private bool started = false;
+    bool Olhando = false;
 
     private void Awake()
     {
@@ -27,14 +30,30 @@ public class JhonMal : MonoBehaviour
         }
 
         if (playerDied) {
-            anim.SetTrigger("Final");
+            if (!Olhando)
+                anim.SetTrigger("Final");
 
-            if(!DialoguesManager.IsOnADialogue) {
-                Application.Quit();
-
-                Debug.Log("QUIT");
+            if(!DialoguesManager.IsOnADialogue && started) {
+                StartCoroutine(END());
             }
         }
+    }
+
+    private IEnumerator END()
+    {
+        Olhando = true;
+        anim.SetTrigger("Olhando");
+        if (FindObjectOfType<MusicManager>() != null) {
+            Destroy(FindObjectOfType<MusicManager>().gameObject);
+        }
+
+        camera1.SetActive(false);
+        camera2.SetActive(true);
+
+        yield return new WaitForSeconds(20f);
+
+        Application.Quit();
+        Debug.Log("Quit");
     }
 
     public void Shoot()
