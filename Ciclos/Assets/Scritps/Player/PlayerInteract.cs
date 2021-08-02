@@ -39,6 +39,7 @@ public class PlayerInteract : MonoBehaviour
         if (isFinished) {
             if (!DialoguesManager.IsOnADialogue) {
                 JhonMal.shoot = true;
+                player.GetRigidbody().velocity = Vector2.zero;
             }
 
             player.enabled = false;
