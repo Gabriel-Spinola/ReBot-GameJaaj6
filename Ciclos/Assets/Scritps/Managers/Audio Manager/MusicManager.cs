@@ -32,7 +32,7 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-		InvokeRepeating(nameof(Restart), 0f, 1f);
+		InvokeRepeating(nameof(Restart), 0f, clipHolder.length);
 	}
 
     void PlayMusic()

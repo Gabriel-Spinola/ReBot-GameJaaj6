@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     {
         if (DialoguesManager.IsOnADialogue) {
             rb.velocity = Vector2.zero;
+
             if (side == -1) {
                 side = 1;
 

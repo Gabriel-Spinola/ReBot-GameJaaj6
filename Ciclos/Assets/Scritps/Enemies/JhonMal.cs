@@ -50,7 +50,7 @@ public class JhonMal : MonoBehaviour
         camera1.SetActive(false);
         camera2.SetActive(true);
 
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(10f);
 
         Application.Quit();
         Debug.Log("Quit");
